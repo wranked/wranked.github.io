@@ -33,7 +33,7 @@ export default function LoginPage() {
   useEffect(() => {
     client.get("/users/")
       .then(function (res) {
-        setCurrentUser(true)
+        setCurrentUser(res.data)
       })
       .catch(function (error) {
         setCurrentUser(false)

@@ -25,17 +25,17 @@ export default function CompaniesPage() {
     <AppContent>
       <div><h1>Explore companies</h1></div>
       {
-        companies.map((company, i) =>
-          <div key={i}>
-            <h3>{company.name}</h3>
-            <h4>Summary</h4>
-            <ReviewSummary ratings={company.rating_summary}></ReviewSummary>
-            <h4>Reviews</h4>
+        companies.map((company, index) =>
+          <div>
+            {/* <h3>{company.name}</h3>
+            <h4>Summary</h4> */}
+            <ReviewSummary company={company} index={index} />
+            {/* <h4>Reviews</h4>
             {company.reviews.map((review, j) =>
               <div key={j}>
                 <Review reviews={review}></Review>
               </div>
-            )}
+            )} */}
           </div>
         )
       }
