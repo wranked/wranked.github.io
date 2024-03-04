@@ -1,0 +1,222 @@
+[
+  {
+      "country": "Argentina",
+      "type": "embassy",
+      "location": "Hungary",
+      "website": "https://eungr.cancilleria.gob.ar/",
+      "email": "eungr@mrecic.gov.ar",
+      "telephone": "+36 1 326 0492/3",
+      "address": "Vérhalom utca 12-16. Building A/21 - Postal Code: 1023 - Budapest",
+      "circumscription": [
+          "Hungary",
+          "Croatia",
+          "Bosnia and Herzegovina",
+          "Montenegro"
+      ],
+      "region": "Americas",
+      "subregion": "South America"
+  },
+  {
+      "country": "Bolivia",
+      "type": "embassy",
+      "location": "Austria",
+      "website": "https://www.embajada-bolivia.at/",
+      "email": "embolaustria@embajada-bolivia.at",
+      "telephone": "+43 1 587 4675",
+      "address": "Prinz Eugen-Straße 18/1/10a - Postal Code: 1040 - Wien",
+      "circumscription": [
+          "Austria",
+          "Croatia",
+          "Hungary",
+          "Slovakia"
+      ],
+      "region": "Americas",
+      "subregion": "South America"
+  },
+  {
+      "country": "Brasil",
+      "type": "embassy",
+      "location": "Croatia",
+      "website": "http://zagreb.itamaraty.gov.br/pt-br/",
+      "email": "secretaria.zagreb@itamaraty.gov.br",
+      "telephone": "+385 1 400 2250",
+      "address": "Trg Drage Iblera, 10, 8º floor (Galleria Business Centar) - Postal Code: 10000 - Zagreb",
+      "circumscription": [
+          "Croatia"
+      ],
+      "region": "Americas",
+      "subregion": "South America"
+  },
+  {
+      "country": "Chile",
+      "type": "embassy",
+      "location": "",
+      "website": "",
+      "email": "",
+      "telephone": "",
+      "address": "",
+      "circumscription": [
+          "Croatia"
+      ],
+      "region": "Americas",
+      "subregion": "South America"
+  },
+  {
+      "country": "Colombia",
+      "type": "embassy",
+      "location": "Austria",
+      "website": "https://austria.embajada.gov.co/",
+      "email": "eaustria@cancilleria.gov.co",
+      "telephone": "+43 1 405 42 49",
+      "address": "Stadiongasse 6-8/15 A1010 - Viena",
+      "circumscription": [
+          "Croatia"
+      ],
+      "region": "Americas",
+      "subregion": "South America"
+  },
+  {
+      "country": "Ecuador",
+      "type": "embassy",
+      "location": "",
+      "website": "",
+      "email": "",
+      "telephone": "",
+      "address": "",
+      "circumscription": [
+          "Austria",
+          "Croatia"
+      ],
+      "region": "Americas",
+      "subregion": "South America"
+  },
+  {
+      "country": "Paraguay",
+      "type": "embassy",
+      "location": "",
+      "website": "",
+      "email": "",
+      "telephone": "",
+      "address": "",
+      "circumscription": [
+          "Croatia"
+      ],
+      "region": "Americas",
+      "subregion": "South America"
+  },
+  {
+      "country": "Perú",
+      "type": "embassy",
+      "location": "Hungary",
+      "website": "",
+      "email": "consulado@embaperu.hu",
+      "telephone": "+36 1 617 0230",
+      "address": "1137 Budapest, Újpesti rakpart 3. II/5",
+      "circumscription": [
+          "Hungary",
+          "Croatia"
+      ],
+      "region": "Americas",
+      "subregion": "South America"
+  },
+  {
+      "country": "Uruguay",
+      "type": "embassy",
+      "location": "",
+      "website": "",
+      "email": "",
+      "telephone": "",
+      "address": "",
+      "circumscription": [
+          "Croatia"
+      ],
+      "region": "Americas",
+      "subregion": "South America"
+  },
+  {
+      "country": "Venezuela",
+      "type": "embassy",
+      "location": "",
+      "website": "",
+      "email": "",
+      "telephone": "",
+      "address": "",
+      "circumscription": [
+          "Croatia"
+      ],
+      "region": "Americas",
+      "subregion": "South America"
+  },
+  {
+      "country": "Australia",
+      "type": "embassy",
+      "location": "Croatia",
+      "website": "https://croatia.embassy.gov.au/",
+      "email": "austemb.zagreb@dfat.gov.au",
+      "telephone": "+385 1 4891 200",
+      "address": "Hektorovićeva 2, Grand Centar, 5th floor - Postal Code: 10000 - Zagreb",
+      "circumscription": [
+          "Croatia",
+          "Kosovo"
+      ],
+      "region": "Asia Pacific",
+      "subregion": "Oceania"
+  },
+  {
+      "country": "Japan",
+      "type": "embassy",
+      "location": "Croatia",
+      "website": "https://www.hr.emb-japan.go.jp/",
+      "email": "consul@zr.mofa.go.jp",
+      "telephone": "+385 1 4870 650",
+      "address": "Boškovićeva 2 - Postal Code: 10000 - Zagreb",
+      "circumscription": [
+          "Croatia"
+      ],
+      "region": "Asia Pacific",
+      "subregion": "Northeastern Asia"
+  },
+  {
+      "country": "South Africa",
+      "type": "consulate",
+      "location": "Croatia",
+      "website": "",
+      "email": "konzulat.jar@email.ht.hr",
+      "telephone": "+385 1 4680 981",
+      "address": "Vinkovićeva ul. 7 - Postal Code: 10000 - Zagreb",
+      "circumscription": [
+          "Croatia"
+      ],
+      "region": "Middle East/Africa",
+      "subregion": "Southern Africa"
+  },
+  {
+      "country": "United States of America",
+      "type": "embassy",
+      "location": "Croatia",
+      "website": "https://hr.usembassy.gov/",
+      "email": "",
+      "telephone": "+385 1 661 2200",
+      "address": "Ulica Thomasa Jeffersona 2 - Postal Code: 10010 - Zagreb",
+      "circumscription": [
+          "Croatia"
+      ],
+      "region": "Americas",
+      "subregion": "North America"
+  },
+  {
+      "country": "Canada",
+      "type": "embassy",
+      "location": "Croatia",
+      "website": "https://www.international.gc.ca/",
+      "email": "zagrb@international.gc.ca",
+      "telephone": "+385 1 4881 200",
+      "address": "Prilaz Gjure Dezelica 4 - Postal Code: 10000 - Zagreb",
+      "circumscription": [
+          "Croatia",
+          "Kosovo"
+      ],
+      "region": "Americas",
+      "subregion": "North America"
+  }
+]

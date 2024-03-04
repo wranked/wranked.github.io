@@ -1,0 +1,29 @@
+{
+  "intro": "Croatia has been a member of the Europe Union since 2013, but in 2023 joined the Schengen agreement so the requirements to enter Schengen zone are same as the rest of countries.",
+  "list": [
+    [
+      "Passport valid for more than 3 months after date for leaving Schengen zone",
+      "Mandatory"
+    ],
+    [
+      "Return ticket or ticket to leave Schengen zone (by flight/bus/train)",
+      "Could be requested"
+    ],
+    [
+      "Accommodation bookings and/or invitation letter",
+      "Could be requested"
+    ],
+    [
+      "Means of support aprox. 100 EUR per person per day (minimum 1000 EUR), may be cash, debit/credit",
+      "Could be requested"
+    ],
+    [
+      "Schengen Visa, countries like Bolivia, Cuba, Dominic Republic, Ecuador, Haiti, Jamaica require a valid Visa",
+      "Mandatory if applicable"
+    ],
+    [
+      "Health insurance (30.000 EUR coverage is mandatory for countries where Visa Schengen is required)",
+      "Mandatory if applicable, recommended for the rest"
+    ]
+  ]
+}

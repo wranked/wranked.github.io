@@ -1,0 +1,50 @@
+[{
+    "name": "",
+    "address": [
+        {
+            "name": "main",
+            "street": "Krizine",
+            "number": "30",
+            "floor": "",
+            "apartment": "Cecilija",
+            "building": "",
+            "postal_code": "21000",
+            "admin_level_4": "",
+            "admin_level_3": "Settlement: Trstenik",
+            "admin_level_2": "Split",
+            "admin_level_1": "Split-Dalmatia",
+            "country": "Croatia",
+            "country_code": "HR",
+            "subregion": "Central Europe",
+            "market_region": "EMEA"
+        }
+    ]
+    
+},
+{
+    "name": "Lumbarda Resort Apartments",
+    "telephone": "+385 99 427 1392",
+    "email": "lumbardamanager@gmail.com",
+    "address": [
+        {
+            "name": "main",
+            "street": "Krizine",
+            "number": "30",
+            "floor": "",
+            "apartment": "Cecilija",
+            "building": "",
+            "postal_code": "21000",
+            "admin_level_4": "",
+            "admin_level_3": "Settlement: Trstenik",
+            "admin_level_2": "Split",
+            "admin_level_1": "Split-Dalmatia",
+            "country": "Croatia",
+            "country_code": "HR",
+            "subregion": "Central Europe",
+            "market_region": "EMEA"
+        }
+    ]
+    
+}
+
+]
