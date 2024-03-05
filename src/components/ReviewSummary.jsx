@@ -1,9 +1,10 @@
 import React from 'react'
+import Rating from './Rating'
 
 
 
 const styles = {
-  "border": "2px solid #999",
+  "border": "1px solid #999",
   "border-radius": "10px",
   "box-shadow": "2px 2px 5px #999",
   "padding": "20px",
@@ -27,6 +28,7 @@ function ReviewSummary(props) {
 
   const sumary = props.company.rating_summary
   const maxRating = Math.max(...[...Array(5).keys()].map((index, b) => sumary[index +1]))
+  const media = 3.4
 
   return (
     <div style={styles} key={props.index}>
@@ -36,8 +38,9 @@ function ReviewSummary(props) {
       <label>3. <progress style={ratingBar} max={maxRating} value={sumary[3]} /></label><br/>
       <label>2. <progress style={ratingBar} max={maxRating} value={sumary[2]} /></label><br/>
       <label>1. <progress style={ratingBar} max={maxRating} value={sumary[1]} /></label><br/>
-      <label>Average: {sumary["media"]}</label><br/>
-      <label>Total: {sumary["total"]}</label><br/>
+      <h1>{sumary["media"]}</h1>
+      <Rating editMode="true" value={sumary["media"]} />
+      <label>{sumary["total"]} reviews</label><br/>
     </div>
 
   )
