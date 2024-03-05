@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import Rating from "./Rating"
+import StarRating from "../common/StarRating"
 import Comment from "./Comment"
 
 
@@ -7,8 +7,8 @@ export default function Review(props) {
   
     return (
       <div>
-        <Rating mode="edit"></Rating>
-        <Rating stars={props.reviews["rating"]}></Rating>
+        <StarRating mode="edit"></StarRating>
+        <StarRating stars={props.reviews["rating"]}></StarRating>
         <Comment value={props.reviews["comment"]}></Comment>
       </div>
     )

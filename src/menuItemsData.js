@@ -15,7 +15,7 @@ function GenerateMenu() {
 
   const menu = {
     companies: {
-      title: 'Companies',
+      title: 'Ranking',
       submenu: [
         {
           title: 'Reviews',
