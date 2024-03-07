@@ -14,7 +14,7 @@ export default function Card({
     padding: padding,
     border: "1px solid #999",
     borderRadius: "5px",
-    boxShadow: "2px 2px 5px #999",
+    boxShadow: "1px 1px 2px #999",
     textAlign: "",
     maxWidth: "",
     minWidth: "",

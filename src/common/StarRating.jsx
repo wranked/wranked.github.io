@@ -14,7 +14,7 @@ export default function StarRating({
   const [hover, setHover] = useState(null)
   
   return (
-    <div>
+    <>
       {[...Array(parseInt(stars))].map((star, index) => {
         const currentRating = index + 1
         if (props.editMode === "true")
@@ -70,6 +70,6 @@ export default function StarRating({
       }
       )
       }
-    </div>
+    </>
   )
 }

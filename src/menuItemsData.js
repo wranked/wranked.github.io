@@ -1,29 +1,15 @@
 import { FaUser } from "react-icons/fa"
 
-import AuthContext from './context/AuthContext'
-import { useContext } from "react"
 
-function GenerateMenu() {
-
-  // const currentUser = AuthContext._currentValue.currentUser
-  const currentUser = ""
-
-  // const { currentUser, setCurrentUser } = useContext(AuthContext)
-
-  console.log(currentUser)
-
+export function GenerateMenu(user) {
 
   const menu = {
     companies: {
       title: 'Ranking',
       submenu: [
         {
-          title: 'Reviews',
-          url: '/reviews',
-        },
-        {
-          title: 'Rating',
-          url: '/companies',
+          title: 'Company List',
+          url: '/companies/',
         },
       ]
     },
@@ -35,8 +21,8 @@ function GenerateMenu() {
       title: 'Utils',
       submenu: [
         {
-          title: 'Schengen requirements',
-          url: '/requirements',
+          title: 'Schengen',
+          url: '/schengen',
         },
         {
           title: 'Rating',
@@ -49,11 +35,10 @@ function GenerateMenu() {
     }
   }
 
-
-  if (currentUser) {
+  if (user) {
     menu.user.submenu = [
       {
-        title: currentUser.email,
+        title: user.email,
         url: '/profile',
       },
       {
@@ -75,48 +60,3 @@ function GenerateMenu() {
   }
   return menu
 }
-
-export const menuItemsData = Object.values(GenerateMenu())
-
-
-
-// export const menuItemsData = [
-//   {
-//     title: 'Companies',
-//     submenu: [
-//       {
-//         title: 'Reviews',
-//         url: '/reviews',
-//       },
-//       {
-//         title: 'Rating',
-//         url: '/companies',
-//       }
-//     ]
-//   },
-//   {
-//     title: 'Embassies',
-//     url: '/embassies',
-//   },
-//   {
-//     title: <FaUser />,
-//     submenu: [
-//       {
-//         title: user.email,
-//         url: '/profile',
-//       },
-//       {
-//         title: 'Login',
-//         url: '/login',
-//       },
-//       {
-//         title: 'Register',
-//         url: '/register',
-//       },
-//       {
-//         title: 'Logout',
-//         url: '/logout',
-//       },
-//     ]
-//   },
-// ]

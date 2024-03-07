@@ -1,17 +1,18 @@
-import React, { useContext } from 'react'
+import React from 'react'
+
 import AppContent from '../components/AppContent'
-import { AuthContext } from '../context/AuthContext'
+import { useAuth } from '../context/AuthProvider'
 
 
 export default function ProfilePage() {
-  // const { currentUser, setCurrentUser } = useContext(AuthContext)
-  // console.log(currentUser)
+
+  const authContext = useAuth()
 
   return (
     <AppContent>
       <h1>Profile</h1>
       <h4>My information</h4>
-      {/* <p>{currentUser}</p> */}
+      <p>{authContext.user.email}</p>
     </AppContent>
   )
 }

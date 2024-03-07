@@ -1,9 +1,10 @@
 import React from 'react'
-import AppContent from '../components/AppContent'
 
+import AppContent from '../components/AppContent'
 import requirements from "../placeholders/requirements.json"
 
-export default function RequirementsPage() {
+
+export default function SchengenPage() {
   return (
     <AppContent>
       <h1>Requirements to enter to Schengen zone</h1>
@@ -14,7 +15,7 @@ export default function RequirementsPage() {
         <tbody>
           {
             requirements.list.map((req, index) =>
-              <tr>
+              <tr key={index}>
                 <td>{req[0]}</td>
                 <th>{req[1]}</th>
               </tr>

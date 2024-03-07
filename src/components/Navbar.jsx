@@ -1,19 +1,27 @@
-import React, { Component, useState } from 'react'
-import { Link, useMatch, useResolvedPath } from 'react-router-dom'
-import './navbar.css'
+import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 
-import { menuItemsData } from '../menuItemsData'
+import { GenerateMenu } from '../menuItemsData'
 import Dropdown from './Dropdown'
+import { useAuth } from '../context/AuthProvider'
+
+import './navbar.css'
 
 
 export default function Navbar() {
 
+  const authContext = useAuth()
+  const menuItemsData = Object.values(GenerateMenu(authContext.user))
+
+  // TODO: Check if necessary to get User all the time
+  useEffect(() => {
+    authContext.checkUser()
+  }, [])
+
   return (
     <nav className='desktop-nav'>
       <ul className='menus'>
-        {/* {console.log(menuItemsData)} */}
         {menuItemsData.map((menu, index) => {
-          // console.log(menu)
           return (
             <MenuItems items={menu} key={index} />
           )
@@ -29,13 +37,11 @@ export default function Navbar() {
 // const isActive = useMatch({ path: resolvedPath.pathname, end: true })
 function MenuItems({ items }) {
   const [dropdown, setDropdown] = useState(false)
-  // console.log("MenuItems")
-  // console.log(items)
   return (
     // <li className={isActive ? "active" : ""}>
     <li className="menu-items">
       {items.submenu ? (
-        
+
         <>
           <button type="button" aria-haspopup="menu" aria-expanded={dropdown ? "true" : "false"} onClick={() => setDropdown((prev) => !prev)}>
             {items.title}{" "}
@@ -46,7 +52,6 @@ function MenuItems({ items }) {
         // <Link to={items.url} {...props}>
         //   {children}
         // </Link>
-        // <>{console.log("Sin submenu")}
         <Link to={items.url}>{items.title}</Link>
         // </>
       )}

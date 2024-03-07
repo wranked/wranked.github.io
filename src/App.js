@@ -1,20 +1,14 @@
-import { useState } from 'react';
-import './App.css'
 import AppContent from './components/AppContent';
-// import { AuthContext } from './context/AuthContext'
+
+import './App.css'
 
 
-function App() {
-
-  // const [currentUser, setCurrentUser] = useState(false)
+function App(props) {
 
   return (
-    <div>
-      <AppContent />
-    </div>
-    // <AuthContext.Provider value={{currentUser, setCurrentUser}}>
-    //   <AppContent />
-    // </AuthContext.Provider>
+    <AppContent>
+      {props.children}
+    </AppContent>
   );
 }
 
