@@ -54,7 +54,7 @@ export default function SchengenPage() {
         </tbody>
       </table>
 
-      <h1>ETIAS (European Travel Information and Authorisation System)</h1>
+      <h1>ETIAS (European Travel Information and Authorization System)</h1>
       <p>It will apply from 2025 to countries that don't require a Visa to enter the Schengen area.</p>
     </AppContent>
   )

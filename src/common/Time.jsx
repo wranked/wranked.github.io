@@ -35,6 +35,6 @@ export default function Time(props) {
   }
 
   return (
-    <>{periodValue} {periodValue > 1 ? maxPeriod + "s" : maxPeriod} ago</>
+    <>Posted {periodValue} {periodValue > 1 ? maxPeriod + "s" : maxPeriod} ago</>
   )
 }

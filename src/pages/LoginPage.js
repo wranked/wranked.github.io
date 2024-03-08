@@ -22,14 +22,9 @@ export default function LoginPage() {
     })
   }
 
-  function submitLogout(event) {
-    event.preventDefault()
-    authContext.logout()
-  }
-
   return (
     <AppContent>
-      <h1>Login</h1>
+      <h1>Sign in</h1>
       <form onSubmit={e => submitLogin(e)}>
         <div>
           <FaAt /><input type="email" placeholder="Email" onChange={e => setEmail(e.target.value)} required></input>
@@ -37,11 +32,8 @@ export default function LoginPage() {
         <div>
           <FaLock /><input type="password" placeholder="Password" onChange={e => setPassword(e.target.value)} required></input>
         </div>
+        <span>Forgot password?</span>
         <button type="submit">Login</button>
-      </form>
-      <h1>Logout</h1>
-      <form onSubmit={e => submitLogout(e)}>
-        <button type="submit">Logout</button>
       </form>
     </AppContent>
   )

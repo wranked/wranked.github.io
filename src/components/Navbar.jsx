@@ -14,7 +14,7 @@ export default function Navbar() {
   const menuItemsData = Object.values(GenerateMenu(authContext.user))
 
   // TODO: Check if necessary to get User all the time
-  useEffect(() => {
+  useEffect(function () {
     authContext.checkUser()
   }, [])
 

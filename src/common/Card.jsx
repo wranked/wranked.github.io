@@ -12,9 +12,9 @@ export default function Card({
     width: width,
     margin: margin,
     padding: padding,
-    border: "1px solid #999",
+    border: "1px solid #ccc",
     borderRadius: "5px",
-    boxShadow: "1px 1px 2px #999",
+    boxShadow: "1px 1px 2px #ddd",
     textAlign: "",
     maxWidth: "",
     minWidth: "",
@@ -22,7 +22,7 @@ export default function Card({
   }
 
   return (
-    <div style={styles}>
+    <div style={styles} className="card">
       {props.children}
     </div>
   )

@@ -13,7 +13,7 @@ export default function ListCompanies() {
 
   const client = useApiClient()
 
-  useEffect(() => {
+  useEffect(function () {
     setLoading(true)
     client.get(`/companies/`)
       .then(function (res) {

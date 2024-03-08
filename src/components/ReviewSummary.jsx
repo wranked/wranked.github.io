@@ -19,7 +19,7 @@ function ReviewSummary(props) {
 
   return (
     <Card>
-      <Link to={"/companies/" + props.company.id}><h3>{props.company.name}</h3></Link>
+      <Link to={`/company/${props.company.id}`}><h3>{props.company.name}</h3></Link>
       {
         auxArray.map((index) => (
           <p key={index}>{index + 1}. <progress style={styles} max={maxRating} value={sumary[index + 1] || 0} /></p>

@@ -1,4 +1,5 @@
 import { FaUser } from "react-icons/fa"
+import UserAvatar from "./components/UserAvatar"
 
 
 export function GenerateMenu(user) {
@@ -31,29 +32,37 @@ export function GenerateMenu(user) {
       ]
     },
     user: {
-      title: <FaUser />
+      title: user ? <UserAvatar size="30" /> : <FaUser />
     }
   }
 
   if (user) {
     menu.user.submenu = [
       {
-        title: user.email,
+        title: <><FaUser /><b>{user.email}</b></>,
         url: '/profile',
       },
       {
-        title: 'Logout',
+        title: "Settings",
+        url: '/profile',
+      },
+      {
+        title: "Language",
+        url: '/profile',
+      },
+      {
+        title: 'Sign out',
         url: '/logout',
       },
     ]
   } else {
     menu.user.submenu = [
       {
-        title: 'Login',
+        title: 'Sign in',
         url: '/login',
       },
       {
-        title: 'Register',
+        title: 'Sign up',
         url: '/register',
       },
     ]

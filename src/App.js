@@ -7,6 +7,7 @@ function App(props) {
 
   return (
     <AppContent>
+      <h1>Home Page</h1>
       {props.children}
     </AppContent>
   );
