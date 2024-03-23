@@ -6,7 +6,6 @@ import { Link, Navigate } from 'react-router-dom'
 
 export default function Logout() {
 
-  console.log("LOGOUT!")
   const authContext = useAuth()
 
   // useEffect(function() {

@@ -10,27 +10,29 @@ export default function StarRating({
   size = 15,
   ...props
 }) {
-  const [rating, setRating] = useState(null)
+  const [value, setValue] = useState(props.value)
   const [hover, setHover] = useState(null)
-  
+
   return (
     <>
       {[...Array(parseInt(stars))].map((star, index) => {
         const currentRating = index + 1
         if (props.editMode === "true")
           return (
+        // <form>
             <label>
               <input
                 style={{ display: "None" }}
                 type="radio"
                 name="rating"
                 value={currentRating}
-                onClick={() => setRating(currentRating)}
+                onClick={() => setValue(currentRating)}
+                onChange={props.onChange}
               />
               <FaStar
                 style={{ cursor: "pointer" }}
                 size={size}
-                color={currentRating <= (hover || rating) ? activeColor : bgColor}
+                color={currentRating <= (hover || value) ? activeColor : bgColor}
                 onMouseEnter={() => setHover(currentRating)}
                 onMouseLeave={() => setHover(null)}
 
@@ -53,6 +55,7 @@ export default function StarRating({
 
               />
             </label>
+            // </form>
           )
 
         return (

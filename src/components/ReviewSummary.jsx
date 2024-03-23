@@ -19,15 +19,15 @@ function ReviewSummary(props) {
 
   return (
     <Card>
-      <Link to={`/company/${props.company.id}`}><h3>{props.company.name}</h3></Link>
+      <Link to={`/company/${props.company.id}`}><h3>{props.company.display_name}</h3></Link>
       {
         auxArray.map((index) => (
           <p key={index}>{index + 1}. <progress style={styles} max={maxRating} value={sumary[index + 1] || 0} /></p>
         ))
       }
-      <h1>{sumary["media"]}</h1>
+      <h1>{Number(sumary["media"]).toFixed(1)}</h1>
       <StarRating editMode="false" value={sumary["media"]} stars={stars} />
-      <label>{sumary["total"]} reviews</label><br />
+      <label>{sumary["count"]} reviews</label><br />
     </Card>
 
   )

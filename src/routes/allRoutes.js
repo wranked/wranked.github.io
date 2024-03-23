@@ -6,19 +6,21 @@ import LoginPage from '../pages/LoginPage'
 import SchengenPage from '../pages/SchengenPage'
 import CompanyDetails from '../pages/CompanyDetails'
 import ListReviews from '../components/ListReviews'
-import Jobs from '../components/Jobs'
+import ListJobs from '../components/ListJobs'
 import RegisterPage from '../pages/RegisterPage'
 import Logout from '../components/Logout'
+import JobsPage from '../pages/JobsPage'
+import ServicesPage from '../pages/ServicesPage'
 
 export const allRoutes = [
   {
     path: "/",
     element: <App />,
   },
-  // {
-  //   path: "/reviews",
-  //   element: <ListReviews />,
-  // },
+  {
+    path: "/jobs",
+    element: <JobsPage />,
+  },
   {
     path: "/profile",
     element: <ProfilePage />,
@@ -28,7 +30,7 @@ export const allRoutes = [
     element: <ListCompanies />,
   },
   {
-    path: "/company/:id/*",
+    path: "/company/:company_id/*",
     element: <CompanyDetails />,
     children: [
       {
@@ -38,11 +40,11 @@ export const allRoutes = [
       },
       {
         path: "jobs",
-        element: <Jobs />,
+        element: <ListJobs />,
       },
       {
         path: "about",
-        element: <Jobs />,
+        element: null,
       },
     ]
   },
@@ -65,5 +67,9 @@ export const allRoutes = [
   {
     path: "/schengen",
     element: <SchengenPage />,
+  },
+  {
+    path: "/services",
+    element: <ServicesPage />,
   },
 ]

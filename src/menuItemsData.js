@@ -6,17 +6,21 @@ export function GenerateMenu(user) {
 
   const menu = {
     companies: {
-      title: 'Ranking',
+      title: 'Companies',
       submenu: [
         {
-          title: 'Company List',
+          title: 'Ranking',
           url: '/companies/',
         },
       ]
     },
-    embassies: {
-      title: 'Embassies',
-      url: '/embassies',
+    services: {
+      title: 'Services',
+      url: '/services',
+    },
+    jobs: {
+      title: 'Jobs',
+      url: '/jobs',
     },
     utils: {
       title: 'Utils',
@@ -26,8 +30,8 @@ export function GenerateMenu(user) {
           url: '/schengen',
         },
         {
-          title: 'Rating',
-          url: '/companies',
+          title: 'Embassies',
+          url: '/embassies',
         },
       ]
     },
