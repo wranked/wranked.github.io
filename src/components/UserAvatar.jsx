@@ -30,12 +30,10 @@ export default function UserAvatar({
     textAlign: "center",
     verticalAlign: "middle",
   }
-
-  const source = `https://i.pravatar.cc/${size}`
  
   return (
     <>
-    {props.anonymous === true ? <FaUserSecret style={anonymous} /> : <img src={source} style={avatar}></img>}
+    {props.public ? <img src={props.image} style={avatar}></img> : <FaUserSecret style={anonymous} />}
     </>
   )
 }

@@ -18,6 +18,21 @@
     "subregion": "South America"
   },
   {
+    "country_code": "AR",
+    "country": "Argentina",
+    "type": "embassy",
+    "location": "Germany",
+    "website": "https://ealem.cancilleria.gob.ar",
+    "email": "ealem@cancilleria.gob.ar",
+    "telephone": "+49 30 2266 8921/52/57",
+    "address": "Von-der-Heydt-Str. 2 - Postal Code: 10785 - Berlin",
+    "circumscription": [
+      "Germany"
+    ],
+    "region": "Americas",
+    "subregion": "South America"
+  },
+  {
     "country_code": "BO",
     "country": "Bolivia",
     "type": "embassy",

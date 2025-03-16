@@ -1,13 +1,16 @@
 import AppContent from './components/AppContent';
 
 import './App.css'
+import { useTranslation } from 'react-i18next';
 
 
 function App(props) {
 
+  const { t } = useTranslation()
+
   return (
     <AppContent>
-      <h1>Home Page</h1>
+      <h1>{t("welcome")}</h1>
       {props.children}
     </AppContent>
   );

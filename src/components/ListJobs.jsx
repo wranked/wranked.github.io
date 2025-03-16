@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 
 import { useApiClient } from '../context/ApiClient'
 import Job from './Job'
+import LoadingSpinner from '../common/LoadingSpinner'
 
 
 export default function ListJobs() {
@@ -22,7 +23,7 @@ export default function ListJobs() {
     setLoading(true)
     client.get(url)
       .then(function (res) {
-        setData(res.data)
+        setData(res.data.results)
         setLoading(false)
       })
       .catch(function (err) {
@@ -30,15 +31,14 @@ export default function ListJobs() {
       })
   }, [])
 
-  function list_jobs() {
-    const arr = data.map((job, index) => <Job index={index} job={job} />)
-      return (arr.length > 0) ? arr : <h3>There are no jobs right now...</h3>
-  }
+  if (error) return <p>Error: {error.message}</p>
 
-  return (
-    loading ?
-      <p>Loading...</p>
-      :
-      <>{list_jobs()}</>
-  )
+  if (loading) return <LoadingSpinner/>
+
+  const arr = data.map((job, index) => <Job key={job.id} job={job} />)
+  
+  if (arr.length > 0) return arr
+
+  return <h3>There are no jobs right now...</h3>
+
 }

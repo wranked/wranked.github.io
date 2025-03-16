@@ -1,7 +1,10 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 
 
 export default function Time(props) {
+
+  const { t , i18n } = useTranslation(["time"])
 
   var date_post = new Date(props.time)
   var date_now = new Date()
@@ -34,7 +37,10 @@ export default function Time(props) {
     }
   }
 
+  if (periodValue > 1) maxPeriod += "_plural"
+  if (i18n.language == "hr" && periodValue >= 5) maxPeriod += "_5"
+
   return (
-    <>Posted {periodValue} {periodValue > 1 ? maxPeriod + "s" : maxPeriod} ago</>
+    <>{t("posted_ago", {time: periodValue, period: t(maxPeriod)})}</>
   )
 }

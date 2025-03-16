@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react'
 
+import LoadingSpinner from '../common/LoadingSpinner'
 import Review from './Review'
 import { useData } from "../pages/CompanyDetails"
 import { useApiClient } from '../context/ApiClient'
 import { useParams } from 'react-router-dom'
-import MyReview from './MyReview'
+import MyCompanyReview from './MyCompanyReview'
 import ReviewSummary from './ReviewSummary'
+import { useAuth } from '../context/AuthProvider'
 
 export default function ListReviews() {
   
@@ -19,32 +21,40 @@ export default function ListReviews() {
   
   const { companyData } = useData()
   const client = useApiClient()
+  const authContext = useAuth()
 
   useEffect(function () {
     setLoading(true)
-    client.get(`/companies/${company_id}/reviews/`)
+    let url = `/companies/${company_id}/reviews/`
+    let headers = {}
+    if (authContext.user) {
+      url = `/companies/${company_id}/reviews/others/`
+      headers = { Authorization: `Token ${authContext.token}` }
+    }
+    client.get(url, 
+      { headers: headers }
+    )
       .then(function (res) {
-        setData(res.data)
+        setData(res.data.results)
         setLoading(false)
       })
       .catch(function (err) {
         setError(err)
       })
-  }, [])
+  }, [toggleRefresh])
 
   if (error) return <p>Error: {error.message}</p>
 
+  if (loading) return <LoadingSpinner/>
+
   return (
-    loading
-      ?
-      <p>Loading...</p>
-      :
       <>
         <ReviewSummary company={companyData} />
-        <MyReview />
+        <MyCompanyReview />
+        <h4>Reviews</h4>
         {
           data.map((review, index) =>
-            <Review index={index} review={review} toggleRefresh={toggleRefresh} setToggleRefresh={setToggleRefresh} />
+            <Review key={review.id} review={review} updateParent={setToggleRefresh} />
           )
         }
       </>

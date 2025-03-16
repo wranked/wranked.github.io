@@ -6,17 +6,20 @@ import Dropdown from './Dropdown'
 import { useAuth } from '../context/AuthProvider'
 
 import './navbar.css'
+import LanguageSelector from './LanguageSelector'
 
 
 export default function Navbar() {
 
   const authContext = useAuth()
-  const menuItemsData = Object.values(GenerateMenu(authContext.user))
+  const menuItemsData = Object.values(GenerateMenu(authContext.user, authContext.companies))
+  console.log("menuItemsData", menuItemsData)
 
   // TODO: Check if necessary to get User all the time
-  useEffect(function () {
-    authContext.checkUser()
-  }, [])
+  // useEffect(function () {
+  //   authContext.checkUser()
+  // }, [])
+
 
   return (
     <nav className='desktop-nav'>
@@ -39,11 +42,12 @@ function MenuItems({ items }) {
   const [dropdown, setDropdown] = useState(false)
   return (
     // <li className={isActive ? "active" : ""}>
+    <>
     <li className="menu-items">
       {items.submenu ? (
 
         <>
-          <button type="button" aria-haspopup="menu" aria-expanded={dropdown ? "true" : "false"} onClick={() => setDropdown((prev) => !prev)}>
+          <button type="button" aria-haspopup="menu" aria-expanded={dropdown ? true : false} onClick={() => setDropdown((prev) => !prev)}>
             {items.title}{" "}
           </button>
           <Dropdown submenus={items.submenu} dropdown={dropdown} />
@@ -56,5 +60,7 @@ function MenuItems({ items }) {
         // </>
       )}
     </li >
+
+    </>
   )
 }

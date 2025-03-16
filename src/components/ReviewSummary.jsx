@@ -13,7 +13,7 @@ const styles = {
 function ReviewSummary(props) {
 
   const stars = 5
-  const sumary = props.company.rating_summary
+  const sumary = props.company.rating_summary || {1: 0, 2: 0, 3: 0, 4: 0, 5: 0, media: 0, count: 0} // TODO: Check if this is the best way to handle the default value
   const auxArray = [...Array(stars).keys()].reverse()
   const maxRating = Math.max(...auxArray.map((index) => sumary[index + 1] || 0))
 
@@ -26,7 +26,7 @@ function ReviewSummary(props) {
         ))
       }
       <h1>{Number(sumary["media"]).toFixed(1)}</h1>
-      <StarRating editMode="false" value={sumary["media"]} stars={stars} />
+      <StarRating editMode={false} value={sumary["media"]} stars={stars} />
       <label>{sumary["count"]} reviews</label><br />
     </Card>
 

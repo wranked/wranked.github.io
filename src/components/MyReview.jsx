@@ -1,42 +1,93 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from "react"
 
-import Review from './Review'
-import WriteReview from './WriteReview'
+import Card from "../common/Card"
+import Comment from "./Comment"
+import StarRating from "../common/StarRating"
+import Time from "../common/Time"
+import UserAvatar from "./UserAvatar"
 import { useApiClient } from '../context/ApiClient'
-import { useParams } from 'react-router-dom'
+import { useParams } from "react-router-dom"
+import { useAuth } from "../context/AuthProvider"
+import { Link, Navigate } from 'react-router-dom'
 
-export default function MyReview() {
+export default function MyReview(props) {
 
-  const { company_id } = useParams()
-
-  const [data, setData] = useState(null)
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(null)
+  const [publicReview, setPublicReview] = useState(props.review ? props.review.is_public : false)
+  const [rating, setRating] = useState(props.review ? props.review.rating : 0)
+  const [comment, setComment] = useState(props.review ? props.review.comment : "")
+  const [role, setRole] = useState("other")
+  const [salaryRange, setSalaryRange] = useState("1000-1200")
+  const [salaryCurrency, setSalaryCurrency] = useState("EUR")
+  const [salaryFrequency, setSalaryFrequency] = useState("monthly")
+  const [error, setError] = useState()
+  const [mode, setMode] = useState("view")
 
   const client = useApiClient()
+  const authContext = useAuth()
 
-  useEffect(function () {
-    setLoading(true)
-    client.get(`/companies/${company_id}/reviews/me`)
+  function editReview(event) {
+    event.preventDefault()
+    client
+      .put(`/reviews/me/`,  // TODO: Check if the trailing slash is mandatory or not
+        {
+          "is_public": publicReview,
+          "rating": rating,
+          "comment": comment,
+          "role": role,
+          "salary_range": salaryRange,
+          "salary_currency": salaryCurrency,
+          "salary_frequency": salaryFrequency,
+        },
+        {
+          // withXSRFToken: true,
+          headers: { Authorization: `Token ${authContext.token}` }
+        },
+      )
       .then(function (res) {
-        setData(res.data)
-        setLoading(false)
+        if (res.status == 200) {
+          setMode("view")
+        }
       })
       .catch(function (err) {
         setError(err)
       })
-  }, [])
-
-  if (error) {
-    if (error.response.status == 404) return <WriteReview />
-    return <p>Error: {error.message}</p>
   }
 
-  return (
-    loading
-      ?
-      <p>Loading...</p>
-      :
-      <Review editMode="false" review={data} />
+  function cancelEdit(event) {
+    event.preventDefault()
+    setMode("view")
+  }
+
+  function editMode(event) {
+    event.preventDefault()
+    setMode("edit")
+  }
+
+
+  if (mode === "edit") return (
+    <Card>
+      <form onSubmit={editReview}>
+        Generic position at <Link to={`/company/${props.review.company.id}`}>{props.review.company.display_name}</Link><br />
+        <label><input type="checkbox" checked={publicReview} onChange={e => setPublicReview(e.target.checked)} /> Public review</label><br />
+        Role: Generic position<br />
+        Salary range: <b>800 - 1000 EUR</b><br />
+        <StarRating editMode={true} value={props.review.rating} onChange={e => setRating(e.target.value)} /><br />
+        <input name="comment" value={comment} onChange={e => setComment(e.target.value)} /><br />
+        <button type="button" onClick={cancelEdit}>Cancel</button>
+        <button type="submit">Save</button>
+      </form>
+    </Card>
   )
+
+  return (
+    <Card>
+      Generic position at <Link to={`/company/${props.review.company.id}/reviews`}>{props.review.company.display_name}</Link><br />
+      <Time time={props.review.created_at} /><br />
+      Salary range: <b>800 - 1000 EUR</b><br />
+      <StarRating editMode={false} value={props.review.rating} />
+      <Comment value={props.review.comment} />
+      <button type="button" onClick={editMode}>Edit</button>
+    </Card>
+  )
+
 }

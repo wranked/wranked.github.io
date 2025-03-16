@@ -1,0 +1,31 @@
+{
+  "posted_ago": "Objavljeno prije {{time}} {{period}}",
+
+  "year": "godinu",
+  "year_plural": "godine",
+  "year_plural_5": "godina",
+
+  "month": "mjesec",
+  "month_plural": "mjeseca",
+  "month_plural_5": "mjeseci",
+
+  "week": "tjedan",
+  "week_plural": "tjedna",
+  "week_plural_5": "tjedana",
+
+  "day": "dan",
+  "day_plural": "dana",
+  "day_plural_5": "dana",
+
+  "hour": "sat",
+  "hour_plural": "sata",
+  "hour_plural_5": "sati",
+
+  "minute": "minute",
+  "minute_plural": "minute",
+  "minute_plural_5": "minuta",
+
+  "second": "sekunde",
+  "second_plural": "sekunde",
+  "second_plural_5": "sekundi"
+}

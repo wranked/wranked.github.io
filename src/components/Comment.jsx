@@ -4,9 +4,9 @@ export default function Comment(props) {
 
   return (
     <div>
-      <form>
-        <input name="comment" value={props.value} />
-      </form>
+
+        <p>{props.value}</p>
+
     </div>
   )
 }

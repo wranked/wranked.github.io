@@ -1,25 +1,42 @@
 import React from 'react'
 import { FaAt, FaLock } from "react-icons/fa"
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 import AppContent from '../components/AppContent'
 import { useAuth } from '../context/AuthProvider'
+import { Link, Navigate, useNavigate } from 'react-router-dom'
 
 
 export default function LoginPage() {
 
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  // const [user, setUser] = useState(null)
+  const [redirect, setRedirect] = useState(false)
 
   const authContext = useAuth()
+  const navigate = useNavigate()
 
-  function submitLogin(event) {
+  async function submitLogin(event) {
     event.preventDefault()
-    authContext.authenticate({
+    const user = await authContext.authenticate({
       email: email,
-      username: email,  // TODO: Check username/email validation in the Backend
+      // username: email,  // TODO: Check username/email validation in the Backend
       password: password
     })
+    if (user) {
+      setRedirect(true)
+    }
+  }
+
+  useEffect(function () {
+    if (authContext.user) {
+      setRedirect(true);
+    }
+  }, [authContext.user]);
+
+  if (redirect) {
+    navigate(-1)
   }
 
   return (

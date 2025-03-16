@@ -1,43 +1,60 @@
 import { FaUser } from "react-icons/fa"
 import UserAvatar from "./components/UserAvatar"
+import { useTranslation } from "react-i18next"
 
 
-export function GenerateMenu(user) {
+export function GenerateMenu(user, companies=null) {
+  console.log("GenerateMenu")
+
+  const { t } = useTranslation("menu")
 
   const menu = {
     companies: {
-      title: 'Companies',
-      submenu: [
-        {
-          title: 'Ranking',
-          url: '/companies/',
-        },
-      ]
+      title: t("companies"),
+      url: '/companies/',
+      // submenu: [{title: t("ranking"), url: '/companies/',},]
     },
     services: {
-      title: 'Services',
+      title: t("services"),
       url: '/services',
     },
     jobs: {
-      title: 'Jobs',
+      title: t("jobs"),
       url: '/jobs',
     },
     utils: {
-      title: 'Utils',
+      title: t("utils"),
       submenu: [
         {
-          title: 'Schengen',
+          title: t("schengen"),
           url: '/schengen',
         },
         {
-          title: 'Embassies',
+          title: t("embassies"),
           url: '/embassies',
+        },
+        {
+          title: t("guides"),
+          url: '/guides',
         },
       ]
     },
     user: {
-      title: user ? <UserAvatar size="30" /> : <FaUser />
+      title: user ? <UserAvatar public={true} size="30" image={user.picture} /> : <FaUser />
     }
+  }
+
+  let companies_admin = []
+  console.log("companies", companies)
+  if (companies && companies.length > 0) {
+    console.log("checking_companies")
+    companies_admin.push({title: <hr />})
+    companies_admin.push(...companies.map((company) => {
+      return {
+        title: "Company: " + company.display_name,
+        url: `/company/${company.id}/admin`,
+      }
+    }))
   }
 
   if (user) {
@@ -47,26 +64,30 @@ export function GenerateMenu(user) {
         url: '/profile',
       },
       {
-        title: "Settings",
-        url: '/profile',
+        title: t("contributions"),
+        url: '/contributions',
       },
       {
-        title: "Language",
+        title: t("language"),
         url: '/profile',
       },
+      ...companies_admin,
       {
-        title: 'Sign out',
+        title: <hr />,
+      },
+      {
+        title: t("sign_out"),
         url: '/logout',
       },
     ]
   } else {
     menu.user.submenu = [
       {
-        title: 'Sign in',
+        title: t("sign_in"),
         url: '/login',
       },
       {
-        title: 'Sign up',
+        title: t("sign_up"),
         url: '/register',
       },
     ]

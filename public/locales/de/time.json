@@ -1,0 +1,24 @@
+{
+  "posted_ago": "Vor {{time}} {{period}} gepostet",
+
+  "year": "Jahr",
+  "year_plural": "Jahren",
+
+  "month": "Monat",
+  "month_plural": "Monaten",
+
+  "week": "Woche",
+  "week_plural": "Wochen",
+
+  "day": "Tag",
+  "day_plural": "Tagen",
+
+  "hour": "Stunde",
+  "hour_plural": "Stunden",
+
+  "minute": "Minute",
+  "minute_plural": "Minuten",
+
+  "second": "Sekunde",
+  "second_plural": "Sekunden"
+}

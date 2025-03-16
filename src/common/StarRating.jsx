@@ -17,10 +17,10 @@ export default function StarRating({
     <>
       {[...Array(parseInt(stars))].map((star, index) => {
         const currentRating = index + 1
-        if (props.editMode === "true")
+        if (props.editMode)
           return (
         // <form>
-            <label>
+            <label key={index}>
               <input
                 style={{ display: "None" }}
                 type="radio"
@@ -59,7 +59,7 @@ export default function StarRating({
           )
 
         return (
-          <>
+          <React.Fragment key={index}>
             {
               (props.value > currentRating + -0.8 && props.value < currentRating - 0.2)
                 ?
@@ -67,7 +67,7 @@ export default function StarRating({
                 :
                 <FaStar size={size} color={currentRating - 0.2 <= props.value ? activeColor : bgColor} />
             }
-          </>
+          </React.Fragment>
         )
 
       }
