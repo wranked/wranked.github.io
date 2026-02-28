@@ -3,14 +3,18 @@ import React from 'react'
 import Header from './Header'
 import Footer from './Footer'
 
+// import './AppContent.css'
+
 
 export default function AppContent(props) {
 
   return (
-    <>
+    <div style={{ width: "100%", display: "flex", flexDirection: "column", minHeight: "100vh" }}>
       <Header />
-      {props.children}
+      <main style={{ width: "800px", margin: "0 auto", flex: 1 }}>
+        {props.children}
+      </main>
       <Footer />
-    </>
+    </div>
   )
 }

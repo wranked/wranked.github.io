@@ -114,7 +114,7 @@ export default function Company(props) {
       <h3>id: {company_id}</h3>
       <h3>id_name: {props.company.id_name}</h3>
       <h3>locations:</h3>
-      <ul>{props.company.locations.map((location, index) => <li key={index}>{location}</li>)}</ul>
+      <ul>{props.company.branches.map((branch, index) => <li key={index}>{branch.name}</li>)}</ul>
       <h3>admins:</h3>
       <ul>{props.company.admins.map((admin, index) => <li key={index}>{admin.user_email}</li>)}</ul>
       <button type="button" onClick={editMode}>Edit</button>

@@ -1,5 +1,5 @@
 import React from 'react'
-import Navbar from '../components/Navbar'
+import Navbar from '../components/NavbarMenu'
 import { Link } from 'react-router-dom'
 
 import embassies from "../placeholders/embassies.json"

@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next"
 
 
 export function GenerateMenu(user, companies=null) {
-  console.log("GenerateMenu")
+  // console.log("GenerateMenu")
 
   const { t } = useTranslation("menu")
 
@@ -48,7 +48,7 @@ export function GenerateMenu(user, companies=null) {
   console.log("companies", companies)
   if (companies && companies.length > 0) {
     console.log("checking_companies")
-    companies_admin.push({title: <hr />})
+    companies_admin.push({title: "divider"})
     companies_admin.push(...companies.map((company) => {
       return {
         title: "Company: " + company.display_name,
@@ -60,7 +60,8 @@ export function GenerateMenu(user, companies=null) {
   if (user) {
     menu.user.submenu = [
       {
-        title: <><FaUser /><b>{user.email}</b></>,
+        // title: <><FaUser /><b>{user.email}</b></>,
+        title: <b>{user.email}</b>,
         url: '/profile',
       },
       {
@@ -73,7 +74,7 @@ export function GenerateMenu(user, companies=null) {
       },
       ...companies_admin,
       {
-        title: <hr />,
+        title: "divider",
       },
       {
         title: t("sign_out"),

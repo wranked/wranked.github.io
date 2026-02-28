@@ -1,0 +1,10 @@
+.app-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.inner-content {
+  width: 800px;
+  margin: 0 auto;
+}

@@ -6,7 +6,7 @@ import Job from './Job'
 import LoadingSpinner from '../common/LoadingSpinner'
 
 
-export default function ListJobs() {
+export default function ListCompanyJobs() {
 
   const { company_id } = useParams()
 
@@ -16,11 +16,9 @@ export default function ListJobs() {
 
   const client = useApiClient()
 
-  let url = `/jobs/`
-  if (company_id) url = `/companies/${company_id}/jobs/`
-
   useEffect(function () {
     setLoading(true)
+    const url = company_id ? `/companies/${company_id}/jobs/`: `/jobs/`
     client.get(url)
       .then(function (res) {
         setData(res.data.results)
@@ -29,11 +27,11 @@ export default function ListJobs() {
       .catch(function (err) {
         setError(err)
       })
-  }, [])
+  }, [company_id])
 
   if (error) return <p>Error: {error.message}</p>
 
-  if (loading) return <LoadingSpinner/>
+  if (loading) return <div style={{ minHeight: "1000px" }}><LoadingSpinner /></div>
 
   const arr = data.map((job, index) => <Job key={job.id} job={job} />)
   

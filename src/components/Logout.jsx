@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { useAuth } from '../context/AuthProvider'
 import { Link, Navigate } from 'react-router-dom'
@@ -7,12 +7,19 @@ import { Link, Navigate } from 'react-router-dom'
 export default function Logout() {
 
   const authContext = useAuth()
+  const [loggedOut, setLoggedOut] = useState(false)
 
-  // useEffect(function() {
-  authContext.logout()
-  // }, [])
+  useEffect(() => {
+    async function handleLogout() {
+      await authContext.logout()
+      setLoggedOut(true)
+    }
+    handleLogout()
+  }, [])
 
-  return (
-    <Navigate to="/" />
-  )
+  if (loggedOut) {
+    return <Navigate to="/" />
+  }
+
+  return <p>Logging out...</p>
 }

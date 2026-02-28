@@ -1,17 +1,30 @@
+import Spinner from 'react-bootstrap/Spinner'
+
+
 export default function LoadingSpinner() {
-    return (
-      <div style={styles.spinnerContainer}>
-        <div style={styles.spinner}></div>
-      </div>
-    );
-  };
+
+  return (
+    <div style={styles.spinnerContainer}>
+      <Spinner animation="border" />
+    </div>
+  )
+}
+
+
+// export default function LoadingSpinner() {
+//     return (
+//       <div style={styles.spinnerContainer}>
+//         <div style={styles.spinner}></div>
+//       </div>
+//     );
+//   };
   
   const styles = {
     spinnerContainer: {
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
-      height: "100px",
+      // height: "100px",
     },
     spinner: {
       width: "40px",
@@ -21,7 +34,7 @@ export default function LoadingSpinner() {
       borderRadius: "50%",
       animation: "spin 1s linear infinite",
     },
-  };
+  }
 
   const styleSheet = document.styleSheets[0];
   styleSheet.insertRule(

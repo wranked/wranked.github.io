@@ -1,6 +1,5 @@
 import React from 'react'
 
-
 export default function Card({
   width = "400px",
   margin = "5px",

@@ -2,24 +2,24 @@ import React, { useEffect, useState } from 'react'
 
 import LoadingSpinner from '../common/LoadingSpinner'
 import Review from './Review'
-import { useData } from "../pages/CompanyDetails"
+import { useCompanyData } from "../pages/CompanyDetails"
 import { useApiClient } from '../context/ApiClient'
 import { useParams } from 'react-router-dom'
 import MyCompanyReview from './MyCompanyReview'
 import ReviewSummary from './ReviewSummary'
 import { useAuth } from '../context/AuthProvider'
 
-export default function ListReviews() {
-  
+export default function ListReviews(props) {
+
   const { company_id } = useParams()
 
-  
+
   const [data, setData] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
-  const [toggleRefresh, setToggleRefresh] = useState(false)  // TODO: Find how to update parent state to refresh list of reviews after post a new one 
-  
-  const { companyData } = useData()
+  // const [toggleRefresh, setToggleRefresh] = useState(false)  // TODO: Find how to update parent state to refresh list of reviews after post a new one 
+
+  const { companyData, setCompanyData } = useCompanyData()
   const client = useApiClient()
   const authContext = useAuth()
 
@@ -31,7 +31,7 @@ export default function ListReviews() {
       url = `/companies/${company_id}/reviews/others/`
       headers = { Authorization: `Token ${authContext.token}` }
     }
-    client.get(url, 
+    client.get(url,
       { headers: headers }
     )
       .then(function (res) {
@@ -41,22 +41,39 @@ export default function ListReviews() {
       .catch(function (err) {
         setError(err)
       })
-  }, [toggleRefresh])
+  }, [])
+
+
+  function updateCompany() {
+    setLoading(true)
+    client.get(`/companies/${company_id}`)
+      .then(function (response) {
+        setCompanyData(response.data)
+        setLoading(false)
+      })
+      .catch(function (err) {
+        setError(err)
+      })
+  }
 
   if (error) return <p>Error: {error.message}</p>
 
-  if (loading) return <LoadingSpinner/>
+  if (loading) return <LoadingSpinner />
 
   return (
-      <>
-        <ReviewSummary company={companyData} />
-        <MyCompanyReview />
-        <h4>Reviews</h4>
-        {
+    <>
+    <h4>Review Summary</h4>
+      <ReviewSummary company={companyData} />
+      <MyCompanyReview updateParent={updateCompany} />
+      <h4>Reviews</h4>
+      {
+        (data.length == 0) ?
+          <p>There are no more reviews for now.</p>
+          :
           data.map((review, index) =>
-            <Review key={review.id} review={review} updateParent={setToggleRefresh} />
+            <Review key={review.id} review={review} /> // updateParent={setToggleRefresh} />
           )
-        }
-      </>
+      }
+    </>
   )
 }

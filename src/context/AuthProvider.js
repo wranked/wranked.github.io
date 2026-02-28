@@ -12,7 +12,7 @@ export function useAuth() {
 
 export function AuthProvider(props) {
 
-  const [token, setToken] = useState(null)
+  const [token, setToken] = useState(typeof window !== "undefined" ? localStorage.getItem("api_token") : null)
   const [user, setUser] = useState(null)
   const [companies, setCompanies] = useState(null)
   const [error, setError] = useState(null)
@@ -22,14 +22,15 @@ export function AuthProvider(props) {
   const client = useApiClient()
 
   useEffect(function () {
-    if (typeof window !== 'undefined') {
+    if (!token && typeof window !== 'undefined') {
       const storedToken = localStorage.getItem("api_token")
       if (storedToken) {
         setToken(storedToken)
         // checkUser(storedToken)
+        console.log("storedToken: ", storedToken)
       }
     }
-  }, [localStorage])
+  }, [token])
 
   useEffect(function () {
     if (token) {

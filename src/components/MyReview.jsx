@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react"
 
-import Card from "../common/Card"
+import Card from 'react-bootstrap/Card'
+import Button from 'react-bootstrap/Button'
+import Form from 'react-bootstrap/Form'
+import FloatingLabel from 'react-bootstrap/FloatingLabel'
+
 import Comment from "./Comment"
 import StarRating from "../common/StarRating"
 import Time from "../common/Time"
@@ -66,27 +70,34 @@ export default function MyReview(props) {
 
   if (mode === "edit") return (
     <Card>
-      <form onSubmit={editReview}>
-        Generic position at <Link to={`/company/${props.review.company.id}`}>{props.review.company.display_name}</Link><br />
-        <label><input type="checkbox" checked={publicReview} onChange={e => setPublicReview(e.target.checked)} /> Public review</label><br />
-        Role: Generic position<br />
-        Salary range: <b>800 - 1000 EUR</b><br />
-        <StarRating editMode={true} value={props.review.rating} onChange={e => setRating(e.target.value)} /><br />
-        <input name="comment" value={comment} onChange={e => setComment(e.target.value)} /><br />
-        <button type="button" onClick={cancelEdit}>Cancel</button>
-        <button type="submit">Save</button>
-      </form>
+      <Card.Body>
+        <Form onSubmit={editReview}>
+          Generic position at <Link to={`/company/${props.review.company.id}`}>{props.review.company.display_name}</Link><br />
+          <label><input type="checkbox" checked={publicReview} onChange={e => setPublicReview(e.target.checked)} /> Public review</label><br />
+          <Card.Text>Role: Generic position</Card.Text>
+          <Card.Text>Salary range: <b>800 - 1000 EUR</b></Card.Text>
+          <StarRating editMode={true} value={props.review.rating} onChange={e => setRating(e.target.value)} /><br />
+          {/* <input name="comment" value={comment} onChange={e => setComment(e.target.value)} /><br /> */}
+          
+          <Form.Control as="textarea" rows={5} name="comment" placeholder="Write your comment" value={comment} onChange={e => setComment(e.target.value)} required />
+
+          <Button type="button" onClick={cancelEdit}>Cancel</Button>
+          <Button type="submit">Save</Button>
+        </Form>
+      </Card.Body>
     </Card>
   )
 
   return (
     <Card>
-      Generic position at <Link to={`/company/${props.review.company.id}/reviews`}>{props.review.company.display_name}</Link><br />
-      <Time time={props.review.created_at} /><br />
-      Salary range: <b>800 - 1000 EUR</b><br />
-      <StarRating editMode={false} value={props.review.rating} />
-      <Comment value={props.review.comment} />
-      <button type="button" onClick={editMode}>Edit</button>
+      <Card.Body>
+        Generic position at <Link to={`/company/${props.review.company.id}/reviews`}>{props.review.company.display_name}</Link><br />
+        <Time time={props.review.created_at} /><br />
+        <Card.Text>Salary range: <b>800 - 1000 EUR</b></Card.Text>
+        <StarRating editMode={false} value={props.review.rating} />
+        <Comment value={props.review.comment} />
+        <Button onClick={editMode}>Edit</Button>
+      </Card.Body>
     </Card>
   )
 

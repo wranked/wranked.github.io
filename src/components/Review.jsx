@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from "react"
 
-import Card from "../common/Card"
+// import Card from "../common/Card"
+import Card from "react-bootstrap/Card"
+import Form from "react-bootstrap/Form"
+import Button from "react-bootstrap/Button"
+import { FaTrashAlt } from "react-icons/fa"
+
 import Comment from "./Comment"
 import StarRating from "../common/StarRating"
 import Time from "../common/Time"
@@ -40,7 +45,7 @@ export default function Review(props) {
           "salary_currency": salaryCurrency,
           "salary_frequency": salaryFrequency,
         },
-        { 
+        {
           // withXSRFToken: true,
           headers: { Authorization: `Token ${authContext.token}` }
         },
@@ -48,6 +53,7 @@ export default function Review(props) {
       .then(function (res) {
         if (res.status == 201) {
           props.setMode("view")
+          props.updateParent(state => !state)
         }
       })
       .catch(function (err) {
@@ -68,14 +74,15 @@ export default function Review(props) {
           "salary_currency": salaryCurrency,
           "salary_frequency": salaryFrequency,
         },
-        { 
+        {
           // withXSRFToken: true,
           headers: { Authorization: `Token ${authContext.token}` }
-         },
+        },
       )
       .then(function (res) {
         if (res.status == 200) {
           props.setMode("view")
+          props.updateParent(state => !state)
         }
       })
       .catch(function (err) {
@@ -100,57 +107,61 @@ export default function Review(props) {
 
   // function renderCreateReview() {
   if (props.mode === "create") return (
-      authContext.user ? 
-      <Card>
-        {props.ownReview ? <h4>Your review</h4> : null}
-        <UserAvatar size="60" public={publicReview} image={authContext.user.picture} />{publicReview ? authContext.user.display_name : "Anonymous review"} <br />
-        <form onSubmit={createReview}>
-        {/* <form> */}
-          <label><input type="checkbox" checked={publicReview} onChange={e => setPublicReview(e.target.checked)} /> Public review</label><br />
-          Role: Generic position<br />
-          Salary range: <b>800 - 1000 EUR</b><br />
-          <StarRating editMode={true} value={rating} onChange={e => setRating(e.target.value)} /><br />
-          <textarea name="comment" onChange={e => setComment(e.target.value)} /><br />
-          <button type="button" onClick={cancelCreate}>Cancel</button>
-          <button type="submit">Save</button>
-        </form>
+    authContext.user ?
+      <Card style={{ width: '400px' }} className="mb-2">
+        <Card.Body>
+          {props.ownReview ? <h4>Your review</h4> : null}
+          <UserAvatar size="60" public={publicReview} image={authContext.user.picture} />{publicReview ? authContext.user.display_name : "Anonymous review"} <br />
+          <Form onSubmit={createReview}>
+            <label><input type="checkbox" checked={publicReview} onChange={e => setPublicReview(e.target.checked)} /> Public review</label><br />
+            Role: Generic position<br />
+            Salary range: <b>800 - 1000 EUR</b><br />
+            <StarRating editMode={true} value={rating} onChange={e => setRating(e.target.value)} /><br />
+            <Form.Control as="textarea" rows={5} name="comment" onChange={e => setComment(e.target.value)} /><br />
+            <Button onClick={cancelCreate}>Cancel</Button>
+            <Button type="submit">Save</Button>
+          </Form>
+        </Card.Body>
       </Card>
       : <Navigate to="/login/" />
-    )
+  )
   // }
 
   // function renderEditReview() {
   if (props.mode === "edit") return (
-      <Card>
+    <Card style={{ width: '400px' }} className="mb-2">
+      <Card.Body>
         {props.ownReview ? <h4>Your review</h4> : null}
         <UserAvatar size="60" public={publicReview} image={authContext.user.picture} />{publicReview ? authContext.user.display_name : "Anonymous review"} <br />
-        <form onSubmit={editReview}>
+        <Form onSubmit={editReview}>
           <label><input type="checkbox" checked={publicReview} onChange={e => setPublicReview(e.target.checked)} /> Public review</label><br />
           Role: Generic position<br />
           Salary range: <b>800 - 1000 EUR</b><br />
           <StarRating editMode={true} value={props.review.rating} onChange={e => setRating(e.target.value)} /><br />
-          <textarea name="comment" value={comment} onChange={e => setComment(e.target.value)} /><br />
-          <button type="button" onClick={cancelEdit}>Cancel</button>
-          <button type="submit">Save</button>
-        </form>
-      </Card>
-    )
+          <Form.Control as="textarea" rows={5} name="comment" value={comment} onChange={e => setComment(e.target.value)} /><br />
+          <Button onClick={cancelEdit}>Cancel</Button>
+          <Button type="submit">Save</Button>
+        </Form>
+      </Card.Body>
+    </Card>
+  )
   // }
 
   // function renderReview() {
-    return (
-      <Card>
+  return (
+    <Card style={{ width: '400px' }} className="mb-2">
+      <Card.Body>
         {props.ownReview ? <h4>Your review</h4> : null}
         <UserAvatar size="60" public={publicReview} image={props.review.reviewer_avatar} /> {publicReview ? props.review.reviewer_display_name : "Anonymous review"} <br />
         <Time time={props.review.created_at} /><br />
         Role: Generic position<br />
         Salary range: <b>800 - 1000 EUR</b><br />
         <StarRating editMode={false} value={props.review.rating} /><br />
-        <textarea value={props.review.comment} disabled={props.mode === "view"} />
-        {/* </Comment> */}
-        {props.ownReview ? <button type="button" onClick={editMode}>Edit</button> : null}
-      </Card>
-    )
+        <Card.Text>{props.review.comment}</Card.Text>
+        {props.ownReview ? <><Button onClick={editMode}>Edit</Button><Button type="button" onClick={editMode}><FaTrashAlt /></Button></> : null}
+      </Card.Body>
+    </Card>
+  )
   // }
 
   // return (
@@ -165,3 +176,4 @@ export default function Review(props) {
   //       renderReview()
   // )
 }
+

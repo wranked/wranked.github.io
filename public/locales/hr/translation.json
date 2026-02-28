@@ -3,7 +3,7 @@
 
   "welcome": "Dobrodošli",
   
-  "copyright": "Copyright 2024. Sva prava pridržana.",
+  "copyright": "Copyright © {{time}}. Sva prava pridržana.",
   
   "about": "Oko",
   "reviews": "Recenzije",

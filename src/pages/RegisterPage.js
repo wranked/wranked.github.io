@@ -1,6 +1,10 @@
 import React, { useState } from 'react'
 import { FaAt, FaLock, FaUser } from 'react-icons/fa'
-import Card from '../common/Card'
+// import Card from '../common/Card'
+import Card from 'react-bootstrap/Card'
+import FloatingLabel from 'react-bootstrap/FloatingLabel'
+import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/Button'
 import GoBack from '../common/GoBack'
 import { Link } from 'react-router-dom'
 import { useApiClient } from '../context/ApiClient'
@@ -38,22 +42,36 @@ export default function RegisterPage() {
   }
 
   return (
-    <div>
-      <h1>Register Page</h1>
-      <Card>
-        <form onSubmit={e => submitRegister(e)}>
-          <FaUser /><input type="name" placeholder="First name" onChange={e => setFirstname(e.target.value)} required /><br />
-          <FaUser /><input type="name" placeholder="Last name" onChange={e => setLastname(e.target.value)} required /><br />
-          <FaAt /><input type="email" placeholder="Email" onChange={e => setEmail(e.target.value)} required /><br />
-          <FaLock /><input type="password" placeholder="Password" onChange={e => setPassword(e.target.value)} required /><br />
-          <FaLock /><input type="password" placeholder="Repeat password" onChange={e => setPassword2(e.target.value)} required /><br />
+    <Card>
+      <Card.Body>
+        <Card.Title>Register</Card.Title>
+        <Form onSubmit={e => submitRegister(e)}>
+          <FloatingLabel controlId="floatingInput" label="First name" className="mb-2">
+            <Form.Control type="name" placeholder="John" onChange={e => setFirstname(e.target.value)} required />
+          </FloatingLabel>
+          <FloatingLabel controlId="floatingInput2" label="Last name" className="mb-2">
+            <Form.Control type="name" placeholder="Doe" onChange={e => setLastname(e.target.value)} required />
+          </FloatingLabel>
+          <FloatingLabel controlId="floatingInput3" label="Email address" className="mb-2">
+            <Form.Control type="email" placeholder="name@example.com" onChange={e => setEmail(e.target.value)} required />
+          </FloatingLabel>
+          <FloatingLabel controlId="floatingInput4" label="Password" className="mb-2">
+            <Form.Control type="password" placeholder="Password" onChange={e => setPassword(e.target.value)} required />
+          </FloatingLabel>
+          <FloatingLabel controlId="floatingInput5" label="Repeat password" className="mb-2">
+            <Form.Control type="password" placeholder="Repeat password" onChange={e => setPassword2(e.target.value)} required />
+          </FloatingLabel>
+          {/* <FaUser /><input type="name" placeholder="First name" onChange={e => setFirstname(e.target.value)} required /><br />
+            <FaUser /><input type="name" placeholder="Last name" onChange={e => setLastname(e.target.value)} required /><br />
+            <FaAt /><input type="email" placeholder="Email" onChange={e => setEmail(e.target.value)} required /><br />
+            <FaLock /><input type="password" placeholder="Password" onChange={e => setPassword(e.target.value)} required /><br />
+            <FaLock /><input type="password" placeholder="Repeat password" onChange={e => setPassword2(e.target.value)} required /><br /> */}
           <p>By clicking Agree & Join, you agree to the User Agreement, Privacy Policy, and Cookie Policy.</p>
-          <button type="submit">Sign up</button>
-        </form>
+          <Button type="submit">Sign up</Button>
+        </Form>
         Already registered? <Link to="/login">Sign in</Link><br />
-      <GoBack />
-      </Card>
-
-    </div>
+        <Button><GoBack /></Button>
+      </Card.Body>
+    </Card>
   )
 }

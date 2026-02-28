@@ -8,7 +8,7 @@ import { useAuth } from '../context/AuthProvider'
 import LoadingSpinner from '../common/LoadingSpinner'
 
 
-export default function MyCompanyReview() {
+export default function MyCompanyReview(props) {
 
   const { company_id } = useParams()
 
@@ -24,6 +24,11 @@ export default function MyCompanyReview() {
     setMode(value)
   }
 
+  // function updateListReviews(event) {
+  //   event.preventDefault()
+  //   props.updateParent(state => !state)
+  // }
+
   useEffect(function () {
     setLoading(true)
     client.get(`/companies/${company_id}/reviews/me/`,
@@ -32,6 +37,7 @@ export default function MyCompanyReview() {
       .then(function (res) {
         setData(res.data)
         setLoading(false)
+        // props.updateParent(state => !state)
       })
       .catch(function (err) {
         setError(err)
@@ -45,5 +51,5 @@ export default function MyCompanyReview() {
 
   if (loading) return <LoadingSpinner />
 
-  return (<Review mode={mode} ownReview={true} review={data} setMode={setMode} publicReview={data.is_public} />)
+  return (<Review mode={mode} ownReview={true} review={data} setMode={setMode} publicReview={data.is_public} updateParent={props.updateParent} />)
 }

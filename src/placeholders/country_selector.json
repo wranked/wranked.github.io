@@ -1,0 +1,93 @@
+[
+    {
+        "name": "Croatia",
+        "country_code": "HR",
+        "continent": "Europe",
+        "areas": ["EUROPEAN_UNION", "SCHENGEN"],
+        "business_region": "Emea"
+    },
+    {
+        "name": "Andorra",
+        "country_code": "AD",
+        "continent": "Europe",
+        "areas": [],
+        "business_region": "Emea"
+    },
+    {
+        "name": "Spain",
+        "country_code": "ES",
+        "continent": "Europe",
+        "areas": ["EUROPEAN_UNION", "SCHENGEN"],
+        "business_region": "Emea"
+    },
+    {
+        "name": "Argentina",
+        "country_code": "AR",
+        "continent": "South America",
+        "areas": ["LATIN_AMERICA", "MERCOSUR"],
+        "business_region": "Amer"
+    },
+    {
+        "name": "Bolivia",
+        "country_code": "BO",
+        "continent": "South America",
+        "areas": ["LATIN_AMERICA", "MERCOSUR"],
+        "business_region": "Amer"
+    },
+    {
+        "name": "Brazil",
+        "country_code": "BR",
+        "continent": "South America",
+        "areas": ["LATIN_AMERICA", "MERCOSUR"],
+        "business_region": "Amer"
+    },
+    {
+        "name": "Chile",
+        "country_code": "CL",
+        "continent": "South America",
+        "areas": ["LATIN_AMERICA", "MERCOSUR"],
+        "business_region": "Amer"
+    },
+    {
+        "name": "Colombia",
+        "country_code": "CO",
+        "continent": "South America",
+        "areas": ["LATIN_AMERICA", "MERCOSUR"],
+        "business_region": "Amer"
+    },
+    {
+        "name": "Ecuador",
+        "country_code": "EC",
+        "continent": "South America",
+        "areas": ["LATIN_AMERICA", "MERCOSUR"],
+        "business_region": "Amer"
+    },
+    {
+        "name": "Paraguay",
+        "country_code": "PY",
+        "continent": "South America",
+        "areas": ["LATIN_AMERICA", "MERCOSUR"],
+        "business_region": "Amer"
+    },
+    {
+        "name": "Peru",
+        "country_code": "PE",
+        "continent": "South America",
+        "areas": ["LATIN_AMERICA", "MERCOSUR"],
+        "business_region": "Amer"
+    },
+    {
+        "name": "Uruguay",
+        "country_code": "UY",
+        "continent": "South America",
+        "areas": ["LATIN_AMERICA", "MERCOSUR"],
+        "business_region": "Amer"
+    },
+    {
+        "name": "Venezuela",
+        "country_code": "VE",
+        "continent": "South America",
+        "areas": ["LATIN_AMERICA", "MERCOSUR"],
+        "business_region": "Amer"
+    }
+]

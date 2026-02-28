@@ -7,7 +7,7 @@ export default function Flag(props) {
 
   return (
     <>
-      <img src={flag_source} />
+      <img src={flag_source} style={props.style} />
     </>
   )
 }

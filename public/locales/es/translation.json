@@ -3,7 +3,7 @@
 
   "welcome": "Bienvenido",
 
-  "copyright": "Copyright 2024. Todos los derechos reservados.",
+  "copyright": "Copyright © {{time}}. Todos los derechos reservados.",
 
   "about": "Acerca de",
   "reviews": "Opiniones",

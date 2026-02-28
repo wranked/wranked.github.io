@@ -6,6 +6,10 @@ import AppContent from '../components/AppContent'
 import { useAuth } from '../context/AuthProvider'
 import { Link, Navigate, useNavigate } from 'react-router-dom'
 
+import Form from 'react-bootstrap/Form'
+import InputGroup from 'react-bootstrap/InputGroup'
+import Button from 'react-bootstrap/Button'
+
 
 export default function LoginPage() {
 
@@ -42,16 +46,28 @@ export default function LoginPage() {
   return (
     <AppContent>
       <h1>Sign in</h1>
-      <form onSubmit={e => submitLogin(e)}>
-        <div>
-          <FaAt /><input type="email" placeholder="Email" onChange={e => setEmail(e.target.value)} required></input>
-        </div>
-        <div>
-          <FaLock /><input type="password" placeholder="Password" onChange={e => setPassword(e.target.value)} required></input>
-        </div>
-        <span>Forgot password?</span>
-        <button type="submit">Login</button>
-      </form>
+      <Form onSubmit={e => submitLogin(e)}>
+
+        <InputGroup>
+          <InputGroup.Text id="basic-addon1"><FaAt /></InputGroup.Text>
+          <Form.Control
+            type="email"
+            placeholder="Email"
+            onChange={e => setEmail(e.target.value)} required
+          />
+        </InputGroup>
+        <InputGroup>
+          <InputGroup.Text id="basic-addon1"><FaLock /></InputGroup.Text>
+          <Form.Control
+            type="password"
+            placeholder="Password"
+            onChange={e => setPassword(e.target.value)} required
+          />
+        </InputGroup>
+        <Link>Forgot password?</Link>
+        <Button variant="primary" type="submit">Login</Button>
+        {/* <button type="submit">Login</button> */}
+      </Form>
     </AppContent>
   )
 }

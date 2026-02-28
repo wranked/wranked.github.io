@@ -1,8 +1,11 @@
 import React from 'react'
 import StarRating from '../common/StarRating'
-import Card from '../common/Card'
-import { Link } from 'react-router-dom'
+// import Card from '../common/Card'
+import Card from 'react-bootstrap/Card'
 
+import { Link } from 'react-router-dom'
+import { useState } from "react"
+import { Accordion, ListGroup, OverlayTrigger, Tooltip } from "react-bootstrap"
 
 const styles = {
   width: "300px",
@@ -10,27 +13,59 @@ const styles = {
 }
 
 
-function ReviewSummary(props) {
+export default function ReviewSummary(props) {
 
   const stars = 5
-  const sumary = props.company.rating_summary || {1: 0, 2: 0, 3: 0, 4: 0, 5: 0, media: 0, count: 0} // TODO: Check if this is the best way to handle the default value
+  const summary = props.company.rating_summary || { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, media: 0, count: 0 } // TODO: Check if this is the best way to handle the default value
+  const media = props.company.reviews_rating
+  const count = props.company.reviews_count
   const auxArray = [...Array(stars).keys()].reverse()
-  const maxRating = Math.max(...auxArray.map((index) => sumary[index + 1] || 0))
+  const maxRating = Math.max(...auxArray.map((index) => summary[index + 1] || 0))
+  const [hoveredItem, setHoveredItem] = useState(null)
 
   return (
-    <Card>
-      <Link to={`/company/${props.company.id}`}><h3>{props.company.display_name}</h3></Link>
-      {
-        auxArray.map((index) => (
-          <p key={index}>{index + 1}. <progress style={styles} max={maxRating} value={sumary[index + 1] || 0} /></p>
-        ))
-      }
-      <h1>{Number(sumary["media"]).toFixed(1)}</h1>
-      <StarRating editMode={false} value={sumary["media"]} stars={stars} />
-      <label>{sumary["count"]} reviews</label><br />
-    </Card>
+    <Card style={{ width: '400px' }} className="mb-2">
+      <Card.Body>
+        <Card.Title><Link to={`/company/${props.company.id}`}>{props.company.display_name}</Link></Card.Title>
+        {props.company.branches.length > 1 ? (
+          <Accordion>
+            <Accordion.Item eventKey="0">
+              <Accordion.Header>Locations</Accordion.Header>
+              <Accordion.Body>
+                <ListGroup>
+                  {props.company.branches.map((branch, index) => (
+                    <OverlayTrigger
+                      key={index}
+                      // placement="right"
+                      overlay={<Tooltip>{branch.location}</Tooltip>}
+                    >
+                      <ListGroup.Item
+                      // onMouseEnter={() => setHoveredItem(index)}
+                      // onMouseLeave={() => setHoveredItem(null)}
+                      // style={{ fontWeight: hoveredItem === index ? "bold" : "normal", cursor: "pointer" }}
+                      >
+                        {branch.name}
+                      </ListGroup.Item>
+                    </OverlayTrigger>
+                  ))}
+                </ListGroup>
+              </Accordion.Body>
+            </Accordion.Item>
+          </Accordion>
+        ) : props.company.branches.length === 1 ? (
+          <Card.Text>{props.company.branches[0].location}</Card.Text>
+        ) : null}
 
+        {/* <Card.Text>{props.company.branches.map((branch) => (branch.name)).join(" - ")}</Card.Text> */}
+        {
+          auxArray.map((index) => (
+            <Card.Text key={index} style={{ marginBottom: "4px", lineHeight: "1.2" }}>{index + 1} <progress style={styles} max={maxRating} value={summary[index + 1] || 0} /></Card.Text>
+          ))
+        }
+        <Card.Title>{Number(media).toFixed(1)}</Card.Title>
+        <StarRating editMode={false} value={media} stars={stars} />
+        <Card.Text>{count} reviews</Card.Text>
+      </Card.Body>
+    </Card>
   )
 }
-
-export default ReviewSummary

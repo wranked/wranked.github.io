@@ -1,15 +1,30 @@
 import { Link } from 'react-router-dom'
-import Navbar from './Navbar'
+import NavbarMenu from './NavbarMenu'
+import OriginDestinationAvatar from './OriginDestinationAvatar'
+import { useLocation } from '../context/LocationContext'
+import { FaArrowRight } from "react-icons/fa"
+
+import Container from 'react-bootstrap/Container'
 
 export default function Header() {
+
+  const { origin, destination } = useLocation()
+
+
   return (
     <header>
-      <div className="nav-area">
+      {/* <div className="nav-area">
         <Link to="/" className="logo">
-          Logo
+          <OriginDestinationAvatar country={origin} />
+          <FaArrowRight/>
+          <OriginDestinationAvatar country={destination} />
         </Link>
-        <Navbar />
-      </div>
+      </div> 
+      <Container className="d-flex justify-content-center">
+        <div className="content-box"> */}
+          <NavbarMenu />
+        {/* </div>
+      </Container> */}
     </header>
   )
 }

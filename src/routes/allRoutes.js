@@ -7,7 +7,7 @@ import LoginPage from '../pages/LoginPage'
 import SchengenPage from '../pages/SchengenPage'
 import CompanyDetails from '../pages/CompanyDetails'
 import ListReviews from '../components/ListReviews'
-import ListJobs from '../components/ListJobs'
+import ListCompanyJobs from '../components/ListCompanyJobs'
 import RegisterPage from '../pages/RegisterPage'
 import Logout from '../components/Logout'
 import JobsPage from '../pages/JobsPage'
@@ -55,7 +55,7 @@ export const allRoutes = [
       },
       {
         path: "jobs",
-        element: <ListJobs />,
+        element: <ListCompanyJobs />,
       },
       {
         path: "about",

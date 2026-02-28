@@ -5,15 +5,15 @@ import { GenerateMenu } from '../menuItemsData'
 import Dropdown from './Dropdown'
 import { useAuth } from '../context/AuthProvider'
 
-import './navbar.css'
-import LanguageSelector from './LanguageSelector'
+// import './navbar.css'
+// import LanguageSelector from './LanguageSelector'
 
 
 export default function Navbar() {
 
   const authContext = useAuth()
   const menuItemsData = Object.values(GenerateMenu(authContext.user, authContext.companies))
-  console.log("menuItemsData", menuItemsData)
+  // console.log("menuItemsData", menuItemsData)
 
   // TODO: Check if necessary to get User all the time
   // useEffect(function () {
