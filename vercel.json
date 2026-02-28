@@ -1,8 +1,9 @@
 {
+  "buildCommand": "CI=false npm run build",
   "rewrites": [
     {
       "source": "/api/:path*",
-      "destination": "https://expats-croatia.vercel.app*"
+      "destination": "https://expats-croatia.vercel.app/:path*"
     }
   ]
 }
