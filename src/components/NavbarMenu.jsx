@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 import { GenerateMenu } from '../menuItemsData'
 // import Dropdown from './Dropdown'
-import { useAuth } from '../context/AuthProvider'
+import { useAuth } from '../features/auth'
 
 import Container from 'react-bootstrap/Container'
 import Nav from 'react-bootstrap/Nav'

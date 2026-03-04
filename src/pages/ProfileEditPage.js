@@ -4,7 +4,7 @@ import Card from '../common/Card'
 import GoBack from '../common/GoBack'
 
 import AppContent from '../components/AppContent'
-import { useAuth } from '../context/AuthProvider'
+import { useAuth } from '../features/auth'
 import { useApiClient } from '../context/ApiClient'
 import { Nav } from 'react-bootstrap'
 import { Navigate } from 'react-router-dom'

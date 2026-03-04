@@ -8,7 +8,7 @@ import './i18n.js'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
-import { AuthProvider } from './context/AuthProvider'
+import { AuthProvider } from './features/auth'
 import { LocationProvider } from "./context/LocationContext.js"
 
 import { allRoutes } from './routes/allRoutes'

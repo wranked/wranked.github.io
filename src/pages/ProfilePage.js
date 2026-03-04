@@ -1,7 +1,7 @@
 import React from 'react'
 
 import AppContent from '../components/AppContent'
-import { useAuth } from '../context/AuthProvider'
+import { useAuth } from '../features/auth'
 import { Link } from 'react-router-dom'
 import { Navigate } from 'react-router-dom'
 import LoadingSpinner from '../common/LoadingSpinner'
