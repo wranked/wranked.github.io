@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 
-import AppContent from '../../../components/AppContent'
-import { useApiClient } from '../../../context/ApiClient'
-import { useAuth } from '../../auth'
-import Company from '../components/Company'
-import LoadingSpinner from '../../../common/LoadingSpinner'
+import AppContent from 'components/AppContent'
+import { useApiClient } from 'context/ApiClient'
+import { useAuth } from 'features/auth'
+import Company from 'features/companies/components/Company'
+import LoadingSpinner from 'common/LoadingSpinner'
 
 
 export default function CompanyDashboard(props) {

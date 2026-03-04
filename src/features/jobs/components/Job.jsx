@@ -3,8 +3,8 @@ import Card from 'react-bootstrap/Card'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 
-import Time from '../../../common/Time'
-import { CompanyAvatar } from '../../companies'
+import Time from 'common/Time'
+import { CompanyAvatar } from 'features/companies'
 
 import { Link } from 'react-router-dom'
 

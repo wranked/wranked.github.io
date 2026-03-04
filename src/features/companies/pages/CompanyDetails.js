@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { Link, Outlet, useOutletContext, useParams, useLocation } from 'react-router-dom'
 
-import AppContent from '../../../components/AppContent'
-import { useApiClient } from '../../../context/ApiClient'
+import AppContent from 'components/AppContent'
+import { useApiClient } from 'context/ApiClient'
 import { useTranslation } from 'react-i18next'
-import CompanyAvatar from '../components/CompanyAvatar'
-import LoadingSpinner from '../../../common/LoadingSpinner'
+import CompanyAvatar from 'features/companies/components/CompanyAvatar'
+import LoadingSpinner from 'common/LoadingSpinner'
 
 import { FaExclamationTriangle } from "react-icons/fa"
-import CertifiedIcon from '../../../common/CertifiedIcon'
+import CertifiedIcon from 'common/CertifiedIcon'
 
 import Card from 'react-bootstrap/Card'
 import Nav from 'react-bootstrap/Nav'

@@ -1,15 +1,15 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
-import { useApiClient } from '../../../context/ApiClient'
+import { useApiClient } from 'context/ApiClient'
 
-import LoadingSpinner from '../../../common/LoadingSpinner'
+import LoadingSpinner from 'common/LoadingSpinner'
 
-import { useLocation } from "../../../context/LocationContext"
+import { useLocation } from "context/LocationContext"
 import { FaLocationDot } from "react-icons/fa6"
 import { FaSearch } from "react-icons/fa"
 
-import AppContent from '../../../components/AppContent'
-import Job from '../components/Job'
+import AppContent from 'components/AppContent'
+import Job from 'features/jobs/components/Job'
 
 import Navbar from 'react-bootstrap/Navbar'
 import Form from 'react-bootstrap/Form'

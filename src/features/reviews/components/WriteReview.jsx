@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { FaPencilAlt } from 'react-icons/fa'
-import Review from './Review'
+import Review from 'features/reviews/components/Review'
 
 import { Button } from 'react-bootstrap'
 

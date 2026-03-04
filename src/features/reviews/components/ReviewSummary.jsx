@@ -1,5 +1,5 @@
 import React from 'react'
-import StarRating from '../../../common/StarRating'
+import StarRating from 'common/StarRating'
 import Card from 'react-bootstrap/Card'
 
 import { Link } from 'react-router-dom'

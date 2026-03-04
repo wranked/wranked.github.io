@@ -4,11 +4,11 @@ import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 
-import Comment from "./Comment"
-import StarRating from "../../../common/StarRating"
-import Time from "../../../common/Time"
-import { useApiClient } from '../../../context/ApiClient'
-import { useAuth } from '../../auth'
+import Comment from "features/reviews/components/Comment"
+import StarRating from "common/StarRating"
+import Time from "common/Time"
+import { useApiClient } from 'context/ApiClient'
+import { useAuth } from 'features/auth'
 import { Link } from 'react-router-dom'
 
 export default function MyReview(props) {

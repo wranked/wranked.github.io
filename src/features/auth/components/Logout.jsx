@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
-import { useAuth } from '../context/AuthProvider'
+import { useAuth } from 'features/auth/context/AuthProvider'
 import { Navigate } from 'react-router-dom'
 
 

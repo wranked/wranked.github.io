@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { useParams } from 'react-router-dom'
 
-import { useApiClient } from '../../../context/ApiClient'
-import { useAuth } from '../../auth'
-import CompanyAvatar from './CompanyAvatar'
-import CompanyAvatarUpload from './CompanyAvatarUpload'
+import { useApiClient } from 'context/ApiClient'
+import { useAuth } from 'features/auth'
+import CompanyAvatar from 'features/companies/components/CompanyAvatar'
+import CompanyAvatarUpload from 'features/companies/components/CompanyAvatarUpload'
 
 
 export default function Company(props) {

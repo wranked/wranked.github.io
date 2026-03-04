@@ -1,7 +1,7 @@
 import React from 'react'
 
-import AppContent from '../components/AppContent'
-import requirements from "../placeholders/requirements.json"
+import AppContent from 'components/AppContent'
+import requirements from "placeholders/requirements.json"
 
 
 export default function SchengenPage() {

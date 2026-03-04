@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
 
-import LoadingSpinner from '../../../common/LoadingSpinner'
-import Review from './Review'
-import { useCompanyData } from '../../companies'
-import { useApiClient } from '../../../context/ApiClient'
+import LoadingSpinner from 'common/LoadingSpinner'
+import Review from 'features/reviews/components/Review'
+import { useCompanyData } from 'features/companies'
+import { useApiClient } from 'context/ApiClient'
 import { useParams } from 'react-router-dom'
-import MyCompanyReview from './MyCompanyReview'
-import ReviewSummary from './ReviewSummary'
-import { useAuth } from '../../auth'
+import MyCompanyReview from 'features/reviews/components/MyCompanyReview'
+import ReviewSummary from 'features/reviews/components/ReviewSummary'
+import { useAuth } from 'features/auth'
 
 export default function ListReviews(props) {
 

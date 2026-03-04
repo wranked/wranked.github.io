@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react'
 
-import LoadingSpinner from '../../../common/LoadingSpinner'
-import { ReviewSummary } from '../../reviews'
-import AppContent from '../../../components/AppContent'
-import { useApiClient } from '../../../context/ApiClient'
-import { useLocation } from "../../../context/LocationContext"
+import LoadingSpinner from 'common/LoadingSpinner'
+import { ReviewSummary } from 'features/reviews'
+import AppContent from 'components/AppContent'
+import { useApiClient } from 'context/ApiClient'
+import { useLocation } from "context/LocationContext"
 
 import { FaLocationDot } from "react-icons/fa6"
 import { FaSearch } from "react-icons/fa"

@@ -1,10 +1,10 @@
 import React from 'react'
 
-import AppContent from '../components/AppContent'
-import { useAuth } from '../features/auth'
+import AppContent from 'components/AppContent'
+import { useAuth } from 'features/auth'
 import { Link } from 'react-router-dom'
 import { Navigate } from 'react-router-dom'
-import LoadingSpinner from '../common/LoadingSpinner'
+import LoadingSpinner from 'common/LoadingSpinner'
 
 export default function ProfilePage() {
 

@@ -1,7 +1,7 @@
 import React from 'react'
 
-import { useLocation } from "../context/LocationContext"
-import countries from "../placeholders/country_selector.json"
+import { useLocation } from "context/LocationContext"
+import countries from "placeholders/country_selector.json"
 
 
 export default function CountrySelector() {

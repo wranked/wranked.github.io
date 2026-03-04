@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
-import NavbarMenu from './NavbarMenu'
-import OriginDestinationAvatar from './OriginDestinationAvatar'
-import { useLocation } from '../context/LocationContext'
+import NavbarMenu from 'components/NavbarMenu'
+import OriginDestinationAvatar from 'components/OriginDestinationAvatar'
+import { useLocation } from 'context/LocationContext'
 import { FaArrowRight } from "react-icons/fa"
 
 import Container from 'react-bootstrap/Container'

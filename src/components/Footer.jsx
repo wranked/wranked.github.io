@@ -1,5 +1,5 @@
 import React from 'react'
-import LanguageSelector from './LanguageSelector'
+import LanguageSelector from 'components/LanguageSelector'
 import { useTranslation } from 'react-i18next'
 import { Col, Container, Row } from 'react-bootstrap'
 

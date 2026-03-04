@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react'
 import Markdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 
-import AppContent from '../components/AppContent'
+import AppContent from 'components/AppContent'
 import { useTranslation } from 'react-i18next'
-import { useApiClient } from '../context/ApiClient'
+import { useApiClient } from 'context/ApiClient'
 import remarkBreaks from 'remark-breaks'
 import { Link } from 'react-router-dom'
-import LoadingSpinner from '../common/LoadingSpinner'
+import LoadingSpinner from 'common/LoadingSpinner'
 
 
 const md = `

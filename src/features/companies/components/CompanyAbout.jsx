@@ -1,5 +1,5 @@
 import React from 'react'
-import { useCompanyData } from '../index'
+import { useCompanyData } from 'features/companies/index'
 import { Link } from 'react-router-dom'
 import Card from 'react-bootstrap/Card'
 import { useState } from 'react'

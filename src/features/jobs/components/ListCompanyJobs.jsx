@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 
-import { useApiClient } from '../../../context/ApiClient'
-import Job from './Job'
-import LoadingSpinner from '../../../common/LoadingSpinner'
+import { useApiClient } from 'context/ApiClient'
+import Job from 'features/jobs/components/Job'
+import LoadingSpinner from 'common/LoadingSpinner'
 
 
 export default function ListCompanyJobs() {

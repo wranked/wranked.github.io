@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
-import { GenerateMenu } from '../menuItemsData'
-import Dropdown from './Dropdown'
-import { useAuth } from '../features/auth'
+import { GenerateMenu } from 'menuItemsData'
+import Dropdown from 'components/Dropdown'
+import { useAuth } from 'features/auth'
 
 // import './navbar.css'
 // import LanguageSelector from './LanguageSelector'

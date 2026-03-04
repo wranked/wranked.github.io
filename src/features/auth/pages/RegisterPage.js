@@ -3,9 +3,9 @@ import Card from 'react-bootstrap/Card'
 import FloatingLabel from 'react-bootstrap/FloatingLabel'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
-import GoBack from '../../../common/GoBack'
+import GoBack from 'common/GoBack'
 import { Link } from 'react-router-dom'
-import { useApiClient } from '../../../context/ApiClient'
+import { useApiClient } from 'context/ApiClient'
 
 export default function RegisterPage() {
 

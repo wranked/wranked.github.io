@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { useAuth } from '../../auth'
-import { useApiClient } from '../../../context/ApiClient'
+import { useAuth } from 'features/auth'
+import { useApiClient } from 'context/ApiClient'
 
 
 function CompanyAvatarUpload({ companyId, currentAvatar, onUploadSuccess, size }) {

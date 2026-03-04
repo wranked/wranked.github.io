@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
-import { GenerateMenu } from '../menuItemsData'
+import { GenerateMenu } from 'menuItemsData'
 // import Dropdown from './Dropdown'
-import { useAuth } from '../features/auth'
+import { useAuth } from 'features/auth'
 
 import Container from 'react-bootstrap/Container'
 import Nav from 'react-bootstrap/Nav'
@@ -13,8 +13,8 @@ import NavDropdown from 'react-bootstrap/NavDropdown'
 // import Row from 'react-bootstrap/Row'
 
 import { FaArrowRight } from "react-icons/fa"
-import OriginDestinationAvatar from './OriginDestinationAvatar'
-import { useLocation } from '../context/LocationContext'
+import OriginDestinationAvatar from 'components/OriginDestinationAvatar'
+import { useLocation } from 'context/LocationContext'
 
 
 export default function NavbarMenu() {

@@ -2,8 +2,8 @@ import React from 'react'
 import { FaAt, FaLock } from "react-icons/fa"
 import { useState, useEffect } from 'react'
 
-import AppContent from '../../../components/AppContent'
-import { useAuth } from '../context/AuthProvider'
+import AppContent from 'components/AppContent'
+import { useAuth } from 'features/auth/context/AuthProvider'
 import { Link, useNavigate } from 'react-router-dom'
 
 import Form from 'react-bootstrap/Form'

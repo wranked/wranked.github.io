@@ -1,11 +1,11 @@
 import React from 'react'
-import Navbar from '../components/NavbarMenu'
+import Navbar from 'components/NavbarMenu'
 import { Link } from 'react-router-dom'
 
-import embassies from "../placeholders/embassies.json"
-import AppContent from '../components/AppContent'
-import Card from '../common/Card'
-import Flag from '../components/Flag'
+import embassies from "placeholders/embassies.json"
+import AppContent from 'components/AppContent'
+import Card from 'common/Card'
+import Flag from 'components/Flag'
 
 export default function EmbassiesPage() {
   const country = "Croatia"

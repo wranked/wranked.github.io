@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 
-import Review from './Review'
-import WriteReview from './WriteReview'
-import { useApiClient } from '../../../context/ApiClient'
+import Review from 'features/reviews/components/Review'
+import WriteReview from 'features/reviews/components/WriteReview'
+import { useApiClient } from 'context/ApiClient'
 import { useParams } from 'react-router-dom'
-import { useAuth } from '../../auth'
-import LoadingSpinner from '../../../common/LoadingSpinner'
+import { useAuth } from 'features/auth'
+import LoadingSpinner from 'common/LoadingSpinner'
 
 
 export default function MyCompanyReview(props) {

@@ -5,12 +5,12 @@ import Form from "react-bootstrap/Form"
 import Button from "react-bootstrap/Button"
 import { FaTrashAlt } from "react-icons/fa"
 
-import StarRating from "../../../common/StarRating"
-import Time from "../../../common/Time"
-import UserAvatar from "../../../components/UserAvatar"
-import { useApiClient } from '../../../context/ApiClient'
+import StarRating from "common/StarRating"
+import Time from "common/Time"
+import UserAvatar from "components/UserAvatar"
+import { useApiClient } from 'context/ApiClient'
 import { useParams } from "react-router-dom"
-import { useAuth } from '../../auth'
+import { useAuth } from 'features/auth'
 import { Navigate } from 'react-router-dom'
 
 export default function Review(props) {

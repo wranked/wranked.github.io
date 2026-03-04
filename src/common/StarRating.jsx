@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { FaStar } from "react-icons/fa"
-import StarHalfSvg from "../assets/svg/StarHalfSvg"
+import StarHalfSvg from "assets/svg/StarHalfSvg"
 
 
 export default function StarRating({
