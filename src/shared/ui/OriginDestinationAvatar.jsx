@@ -1,6 +1,6 @@
 import React from 'react'
 import { FaEarthAmericas } from 'react-icons/fa6'
-import Flag from 'components/Flag'
+import Flag from 'shared/ui/Flag'
 
 
 export default function OriginDestinationAvatar({

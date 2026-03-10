@@ -59,7 +59,7 @@ export default function CompanyAbout() {
             companyData.url ?
               <>
                 <Card.Title>Website</Card.Title>
-                <Card.Text><Link to={companyData.url}>{companyData.url}</Link></Card.Text>
+                <Card.Text><a href={companyData.url} target="_blank" rel="noopener noreferrer">{companyData.url}</a></Card.Text>
               </>
               :
               null

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
-import LoadingSpinner from 'common/LoadingSpinner'
+import LoadingSpinner from 'shared/ui/LoadingSpinner'
 import Review from 'features/reviews/components/Review'
 import { useCompanyData } from 'features/companies'
 import { useApiClient } from 'context/ApiClient'

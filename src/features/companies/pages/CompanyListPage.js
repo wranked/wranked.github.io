@@ -1,10 +1,14 @@
 import { useState, useEffect } from 'react'
 
-import LoadingSpinner from 'common/LoadingSpinner'
-import { ReviewSummary } from 'features/reviews'
-import AppContent from 'components/AppContent'
+import LoadingSpinner from 'shared/ui/LoadingSpinner'
+import { CompanyListing } from 'features/companies'
+import AppContent from 'shared/layout/AppContent'
 import { useApiClient } from 'context/ApiClient'
 import { useLocation } from "context/LocationContext"
+import CertifiedIcon from 'shared/icons/CertifiedIcon'
+import { FaTrophy } from "react-icons/fa6"
+import { LuSkull } from "react-icons/lu"
+
 
 import { FaLocationDot } from "react-icons/fa6"
 import { FaSearch } from "react-icons/fa"
@@ -14,9 +18,10 @@ import Button from 'react-bootstrap/Button'
 import InputGroup from 'react-bootstrap/InputGroup'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
+import BlacklistedIcon from 'shared/icons/BlacklistedIcon'
 
 
-export default function ListCompanies() {
+export default function CompanyListPage() {
 
   const { destination } = useLocation()
   const client = useApiClient()
@@ -26,9 +31,9 @@ export default function ListCompanies() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
 
-  async function fetchCompanies() {
+  async function fetchCompanies(currentFilters = filters) {
     setLoading(true)
-    const queryParams = new URLSearchParams(filters).toString()
+    const queryParams = new URLSearchParams(currentFilters).toString()
     await client.get(`/companies/?${queryParams}`)
       .then(function (response) {
         setData(response.data.results)
@@ -37,6 +42,12 @@ export default function ListCompanies() {
       .catch(function (err) {
         setError(err)
       })
+  }
+
+  function applyOrderingFilter(ordering) {
+    const nextFilters = { ...filters, ordering }
+    setFilters(nextFilters)
+    fetchCompanies(nextFilters)
   }
 
   useEffect(function () {
@@ -57,8 +68,14 @@ export default function ListCompanies() {
         <li>Ratings from company admin users are not taken into account</li>
         <li>Ratings from public reviews are worth more than anonymous ones</li>
       </ul>
+      <p>References:</p>
+
+      <p><CertifiedIcon /> Intermediary (agency) who issued an employment permit.</p>
+      <p><BlacklistedIcon /> Company with undeclared work during the inspection.</p>
+
+
       <Navbar className="justify-content-between">
-        <Form onSubmit={e => { e.preventDefault(); fetchCompanies(e) }}>
+        <Form onSubmit={e => { e.preventDefault(); fetchCompanies() }}>
           <Row>
             <Col xs="auto">
               <InputGroup>
@@ -66,7 +83,7 @@ export default function ListCompanies() {
                 <Form.Control
                   type="text"
                   placeholder="Company"
-                  value={filters.search}
+                  value={filters.search || ""}
                   onChange={(e) => setFilters({ ...filters, search: e.target.value })}
                 />
               </InputGroup>
@@ -77,7 +94,7 @@ export default function ListCompanies() {
                 <Form.Control
                   type="text"
                   placeholder="Location"
-                  value={filters.location}
+                  value={filters.location || ""}
                   onChange={(e) => setFilters({ ...filters, location: e.target.value })}
                 />
               </InputGroup>
@@ -86,20 +103,26 @@ export default function ListCompanies() {
               <Button variant="primary" type="submit">Search</Button>
             </Col>
           </Row>
+          <Row>
+            <Col xs="auto">
+              <Button variant="outline-success" type="button" onClick={() => applyOrderingFilter('-reviews_rating')}><FaTrophy color='#F80' /> Top companies</Button>
+            </Col>
+            <Col xs="auto">
+              <Button variant="outline-danger" type="button" onClick={() => applyOrderingFilter('reviews_rating')}><LuSkull color='#000' /> Blacklist</Button>
+            </Col>
+          </Row>
         </Form>
       </Navbar>
       <div style={{ minHeight: "500px" }}>
-      {loading ?
-        <LoadingSpinner />
-        :
-        <>
-          {
-            data.map((company, index) =>
-              <ReviewSummary company={company} key={company.id} />
-            )
-          }
-        </>
-      }
+        {loading ?
+          <LoadingSpinner />
+          :
+          <>
+            {data.length > 0
+              ? data.map((company) => <CompanyListing company={company} key={company.id} />)
+              : <p>There are no companies matching the search criteria...</p>}
+          </>
+        }
       </div>
     </AppContent>
   )

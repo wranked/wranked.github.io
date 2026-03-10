@@ -1,5 +1,5 @@
 import React from 'react'
-import StarRating from 'common/StarRating'
+import StarRatingIcon from 'shared/icons/StarRatingIcon'
 import Card from 'react-bootstrap/Card'
 
 import { Link } from 'react-router-dom'
@@ -56,7 +56,7 @@ export default function ReviewSummary(props) {
           ))
         }
         <Card.Title>{Number(media).toFixed(1)}</Card.Title>
-        <StarRating editMode={false} value={media} stars={stars} />
+        <StarRatingIcon editMode={false} value={media} stars={stars} />
         <Card.Text>{`${count} ${count === 1 ? 'review' : 'reviews'}`}</Card.Text>
       </Card.Body>
     </Card>

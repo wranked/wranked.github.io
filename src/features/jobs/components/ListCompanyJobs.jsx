@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 
 import { useApiClient } from 'context/ApiClient'
 import Job from 'features/jobs/components/Job'
-import LoadingSpinner from 'common/LoadingSpinner'
+import LoadingSpinner from 'shared/ui/LoadingSpinner'
 
 
 export default function ListCompanyJobs() {

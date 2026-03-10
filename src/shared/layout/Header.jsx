@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
-import NavbarMenu from 'components/NavbarMenu'
-import OriginDestinationAvatar from 'components/OriginDestinationAvatar'
+import NavbarMenu from 'shared/layout/NavbarMenu'
+import OriginDestinationAvatar from 'shared/ui/OriginDestinationAvatar'
 import { useLocation } from 'context/LocationContext'
 import { FaArrowRight } from "react-icons/fa"
 

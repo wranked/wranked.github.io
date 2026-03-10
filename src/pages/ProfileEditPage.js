@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import { FaAt, FaLock, FaUser } from 'react-icons/fa'
-import Card from 'common/Card'
-import GoBack from 'common/GoBack'
+import Card from 'shared/ui/Card'
+import GoBack from 'shared/ui/GoBack'
 
-import AppContent from 'components/AppContent'
+import AppContent from 'shared/layout/AppContent'
 import { useAuth } from 'features/auth'
 import { useApiClient } from 'context/ApiClient'
 import { Nav } from 'react-bootstrap'
 import { Navigate } from 'react-router-dom'
-import LoadingSpinner from 'common/LoadingSpinner'
+import LoadingSpinner from 'shared/ui/LoadingSpinner'
 
 
 

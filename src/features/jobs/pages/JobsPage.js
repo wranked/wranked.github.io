@@ -2,13 +2,13 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import { useApiClient } from 'context/ApiClient'
 
-import LoadingSpinner from 'common/LoadingSpinner'
+import LoadingSpinner from 'shared/ui/LoadingSpinner'
 
 import { useLocation } from "context/LocationContext"
 import { FaLocationDot } from "react-icons/fa6"
 import { FaSearch } from "react-icons/fa"
 
-import AppContent from 'components/AppContent'
+import AppContent from 'shared/layout/AppContent'
 import Job from 'features/jobs/components/Job'
 
 import Navbar from 'react-bootstrap/Navbar'

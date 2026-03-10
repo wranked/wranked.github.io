@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react'
 
-import AppContent from 'components/AppContent'
+import AppContent from 'shared/layout/AppContent'
 import { useApiClient } from 'context/ApiClient'
 import { useAuth } from 'features/auth'
 
 import MyReview from 'features/reviews/components/MyReview'
 import { Navigate } from 'react-router-dom'
 import WriteReview from 'features/reviews/components/WriteReview'
-import LoadingSpinner from 'common/LoadingSpinner'
+import LoadingSpinner from 'shared/ui/LoadingSpinner'
 
 
 export default function ContributionsPage() {

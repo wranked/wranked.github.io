@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function StarHalfSvg({
+export default function HalfStarIcon({
   size = 15,
   activeColor = "#fc0",
   bgColor = "#ddd",

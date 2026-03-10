@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 
-import AppContent from 'components/AppContent'
+import AppContent from 'shared/layout/AppContent'
 import JobDetails from 'features/jobs/components/JobDetails'
 
 import { useParams } from 'react-router-dom'
 import { useApiClient } from 'context/ApiClient'
-import LoadingSpinner from 'common/LoadingSpinner'
+import LoadingSpinner from 'shared/ui/LoadingSpinner'
 
 
 export default function JobPage() {

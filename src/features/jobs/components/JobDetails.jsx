@@ -1,8 +1,8 @@
 import React from 'react'
 import Card from 'react-bootstrap/Card'
-import Time from 'common/Time'
+import Time from 'shared/ui/Time'
 import { CompanyAvatar } from 'features/companies'
-import GoBack from 'common/GoBack'
+import GoBack from 'shared/ui/GoBack'
 import { Badge, Stack } from 'react-bootstrap';
 import { FaCheckCircle, FaTimesCircle } from "react-icons/fa"
 import { MdVerified } from "react-icons/md"

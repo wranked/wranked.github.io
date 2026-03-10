@@ -1,5 +1,5 @@
-import AppContent from 'components/AppContent'
-import CountrySelector from 'common/CountrySelector'
+import AppContent from 'shared/layout/AppContent'
+import CountrySelector from 'shared/ui/CountrySelector'
 
 // import './App.css'
 import { useTranslation } from 'react-i18next'

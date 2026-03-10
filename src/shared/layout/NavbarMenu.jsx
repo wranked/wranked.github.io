@@ -13,7 +13,7 @@ import NavDropdown from 'react-bootstrap/NavDropdown'
 // import Row from 'react-bootstrap/Row'
 
 import { FaArrowRight } from "react-icons/fa"
-import OriginDestinationAvatar from 'components/OriginDestinationAvatar'
+import OriginDestinationAvatar from 'shared/ui/OriginDestinationAvatar'
 import { useLocation } from 'context/LocationContext'
 
 

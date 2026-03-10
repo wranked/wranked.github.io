@@ -1,5 +1,5 @@
 import App from 'App'
-import { ListCompanies, CompanyDetails, CompanyAbout, CompanyDashboard } from 'features/companies'
+import { CompanyListPage, CompanyDetailsPage, CompanyAbout, CompanyDashboardPage } from 'features/companies'
 import ProfilePage from 'pages/ProfilePage'
 import ProfileEditPage from 'pages/ProfileEditPage'
 import EmbassiesPage from 'pages/EmbassiesPage'
@@ -34,11 +34,11 @@ export const allRoutes = [
   },
   {
     path: "/companies",
-    element: <ListCompanies />,
+    element: <CompanyListPage />,
   },
   {
     path: "/company/:company_id/*",
-    element: <CompanyDetails />,
+    element: <CompanyDetailsPage />,
     children: [
       {
         path: "reviews",
@@ -57,7 +57,7 @@ export const allRoutes = [
   },
   {
     path: "/company/:company_id/admin",
-    element: <CompanyDashboard />,
+    element: <CompanyDashboardPage />,
   },
   // {
   //   path: "/company/:company_id/admin/edit",

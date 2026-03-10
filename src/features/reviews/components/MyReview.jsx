@@ -5,8 +5,8 @@ import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 
 import Comment from "features/reviews/components/Comment"
-import StarRating from "common/StarRating"
-import Time from "common/Time"
+import StarRatingIcon from 'shared/icons/StarRatingIcon'
+import Time from 'shared/ui/Time'
 import { useApiClient } from 'context/ApiClient'
 import { useAuth } from 'features/auth'
 import { Link } from 'react-router-dom'
@@ -72,7 +72,7 @@ export default function MyReview(props) {
           <label><input type="checkbox" checked={publicReview} onChange={e => setPublicReview(e.target.checked)} /> Public review</label><br />
           <Card.Text>Role: Generic position</Card.Text>
           <Card.Text>Salary range: <b>800 - 1000 EUR</b></Card.Text>
-          <StarRating editMode={true} value={props.review.rating} onChange={e => setRating(e.target.value)} /><br />
+          <StarRatingIcon editMode={true} value={props.review.rating} onChange={e => setRating(e.target.value)} /><br />
 
           <Form.Control as="textarea" rows={5} name="comment" placeholder="Write your comment" value={comment} onChange={e => setComment(e.target.value)} required />
 
@@ -89,7 +89,7 @@ export default function MyReview(props) {
         Generic position at <Link to={`/company/${props.review.company.id}/reviews`}>{props.review.company.display_name}</Link><br />
         <Time time={props.review.created_at} /><br />
         <Card.Text>Salary range: <b>800 - 1000 EUR</b></Card.Text>
-        <StarRating editMode={false} value={props.review.rating} />
+        <StarRatingIcon editMode={false} value={props.review.rating} />
         <Comment value={props.review.comment} />
         <Button onClick={editMode}>Edit</Button>
       </Card.Body>

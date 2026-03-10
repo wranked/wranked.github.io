@@ -1,5 +1,5 @@
 import { FaUser } from "react-icons/fa"
-import UserAvatar from "components/UserAvatar"
+import UserAvatar from 'shared/ui/UserAvatar'
 import { useTranslation } from "react-i18next"
 
 

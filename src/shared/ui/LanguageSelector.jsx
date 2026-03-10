@@ -1,6 +1,6 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
-import Flag from 'components/Flag'
+import Flag from 'shared/ui/Flag'
 
 
 const languages = [

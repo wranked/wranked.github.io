@@ -1,21 +1,21 @@
 import React, { useEffect, useState } from 'react'
 import { Link, Outlet, useOutletContext, useParams, useLocation } from 'react-router-dom'
 
-import AppContent from 'components/AppContent'
+import AppContent from 'shared/layout/AppContent'
 import { useApiClient } from 'context/ApiClient'
 import { useTranslation } from 'react-i18next'
 import CompanyAvatar from 'features/companies/components/CompanyAvatar'
-import LoadingSpinner from 'common/LoadingSpinner'
+import LoadingSpinner from 'shared/ui/LoadingSpinner'
 
 import { FaExclamationTriangle } from "react-icons/fa"
-import CertifiedIcon from 'common/CertifiedIcon'
+import CertifiedIcon from 'shared/icons/CertifiedIcon'
 
 import Card from 'react-bootstrap/Card'
 import Nav from 'react-bootstrap/Nav'
 
 
 
-export default function CompanyDetails() {
+export default function CompanyDetailsPage() {
 
   const { company_id } = useParams()
   const { t } = useTranslation()

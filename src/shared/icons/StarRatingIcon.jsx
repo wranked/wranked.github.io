@@ -1,9 +1,9 @@
 import React, { useState } from "react"
 import { FaStar } from "react-icons/fa"
-import StarHalfSvg from "assets/svg/StarHalfSvg"
+import HalfStarIcon from 'shared/icons/HalfStarIcon'
 
 
-export default function StarRating({
+export default function StarRatingIcon({
   activeColor = "#fc0",
   bgColor = "#ddd",
   stars = 5,
@@ -63,7 +63,7 @@ export default function StarRating({
             {
               (props.value > currentRating + -0.8 && props.value < currentRating - 0.2)
                 ?
-                <StarHalfSvg size={size} activeColor={activeColor} bgColor={bgColor}/>
+                <HalfStarIcon size={size} activeColor={activeColor} bgColor={bgColor}/>
                 :
                 <FaStar size={size} color={currentRating - 0.2 <= props.value ? activeColor : bgColor} />
             }

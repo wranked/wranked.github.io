@@ -1,5 +1,5 @@
 import React from 'react'
-import AppContent from 'components/AppContent'
+import AppContent from 'shared/layout/AppContent'
 
 export default function ServicesPage() {
   return (

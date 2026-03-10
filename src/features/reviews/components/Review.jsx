@@ -5,9 +5,9 @@ import Form from "react-bootstrap/Form"
 import Button from "react-bootstrap/Button"
 import { FaTrashAlt } from "react-icons/fa"
 
-import StarRating from "common/StarRating"
-import Time from "common/Time"
-import UserAvatar from "components/UserAvatar"
+import StarRatingIcon from 'shared/icons/StarRatingIcon'
+import Time from 'shared/ui/Time'
+import UserAvatar from 'shared/ui/UserAvatar'
 import { useApiClient } from 'context/ApiClient'
 import { useParams } from "react-router-dom"
 import { useAuth } from 'features/auth'
@@ -111,7 +111,7 @@ export default function Review(props) {
             <label><input type="checkbox" checked={publicReview} onChange={e => setPublicReview(e.target.checked)} /> Public review</label><br />
             Role: Generic position<br />
             Salary range: <b>800 - 1000 EUR</b><br />
-            <StarRating editMode={true} value={rating} onChange={e => setRating(e.target.value)} /><br />
+            <StarRatingIcon editMode={true} value={rating} onChange={e => setRating(e.target.value)} /><br />
             <Form.Control as="textarea" rows={5} name="comment" onChange={e => setComment(e.target.value)} /><br />
             <Button onClick={cancelCreate}>Cancel</Button>
             <Button type="submit">Save</Button>
@@ -130,7 +130,7 @@ export default function Review(props) {
           <label><input type="checkbox" checked={publicReview} onChange={e => setPublicReview(e.target.checked)} /> Public review</label><br />
           Role: Generic position<br />
           Salary range: <b>800 - 1000 EUR</b><br />
-          <StarRating editMode={true} value={props.review.rating} onChange={e => setRating(e.target.value)} /><br />
+          <StarRatingIcon editMode={true} value={props.review.rating} onChange={e => setRating(e.target.value)} /><br />
           <Form.Control as="textarea" rows={5} name="comment" value={comment} onChange={e => setComment(e.target.value)} /><br />
           <Button onClick={cancelEdit}>Cancel</Button>
           <Button type="submit">Save</Button>
@@ -147,7 +147,7 @@ export default function Review(props) {
         <Time time={props.review.created_at} /><br />
         Role: Generic position<br />
         Salary range: <b>800 - 1000 EUR</b><br />
-        <StarRating editMode={false} value={props.review.rating} /><br />
+        <StarRatingIcon editMode={false} value={props.review.rating} /><br />
         <Card.Text>{props.review.comment}</Card.Text>
         {props.ownReview ? <><Button onClick={editMode}>Edit</Button><Button type="button" onClick={editMode}><FaTrashAlt /></Button></> : null}
       </Card.Body>

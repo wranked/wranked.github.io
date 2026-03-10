@@ -5,7 +5,7 @@ import WriteReview from 'features/reviews/components/WriteReview'
 import { useApiClient } from 'context/ApiClient'
 import { useParams } from 'react-router-dom'
 import { useAuth } from 'features/auth'
-import LoadingSpinner from 'common/LoadingSpinner'
+import LoadingSpinner from 'shared/ui/LoadingSpinner'
 
 
 export default function MyCompanyReview(props) {

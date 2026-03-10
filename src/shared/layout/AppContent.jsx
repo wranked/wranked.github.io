@@ -1,7 +1,7 @@
 import React from 'react'
 
-import Header from 'components/Header'
-import Footer from 'components/Footer'
+import Header from 'shared/layout/Header'
+import Footer from 'shared/layout/Footer'
 
 // import './AppContent.css'
 
