@@ -3,6 +3,7 @@ import StarRatingIcon from 'shared/icons/StarRatingIcon'
 import Card from 'react-bootstrap/Card'
 import CertifiedIcon from 'shared/icons/CertifiedIcon'
 import BlacklistedIcon from 'shared/icons/BlacklistedIcon'
+import CompanyAvatar from 'features/companies/components/CompanyAvatar'
 
 import { Link } from 'react-router-dom'
 import { Accordion, ListGroup, OverlayTrigger, Tooltip } from 'react-bootstrap'
@@ -15,7 +16,7 @@ export default function CompanyListing({ company }) {
   return (
     <Card style={{ width: '400px' }} className="mb-2">
       <Card.Body>
-        <Card.Title><Link style={{ textDecoration: 'none' }} to={`/company/${company.id}`}>{company.display_name}</Link> {company.blacklisted_at !== null ? <BlacklistedIcon /> : null}</Card.Title>
+        <Card.Title><Link style={{ textDecoration: 'none' }} to={`/company/${company.id}`}><CompanyAvatar size="45" image={company.avatar_url} />{company.display_name}</Link> {company.blacklisted_at !== null ? <BlacklistedIcon /> : null}</Card.Title>
         <p>{company.category} <CertifiedIcon isCertified={company.is_certified} /></p>
         {company.branches.length > 1 ? (
           <Accordion>
