@@ -54,7 +54,7 @@ export default function CompanyAbout() {
       <Card style={{ width: "800px" }}>
         <Card.Body>
           <Card.Title>Overview</Card.Title>
-          <Card.Text>{companyData.description}</Card.Text>
+          <Card.Text style={{ whiteSpace: "pre-line" }}>{companyData.description}</Card.Text>
           {
             companyData.url ?
               <>

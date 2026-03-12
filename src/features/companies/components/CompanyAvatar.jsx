@@ -9,7 +9,7 @@ export default function CompanyAvatar({
   const avatar = {
     width: `${size}px`,
     height: `${size}px`,
-    borderRadius: "10%",
+    borderRadius: "5%",
     margin: "5px",
     border: "1px solid #ddd",
     boxShadow: "1px 1px 2px #ddd",
@@ -21,7 +21,7 @@ export default function CompanyAvatar({
     width: size,
     height: size,
     color: "#444",
-    borderRadius: "10%",
+    borderRadius: "5%",
     margin: "5px",
     padding: "5px",
     border: "1px solid #ddd",

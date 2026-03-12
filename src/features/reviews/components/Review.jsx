@@ -106,7 +106,7 @@ export default function Review(props) {
       <Card style={{ width: '400px' }} className="mb-2">
         <Card.Body>
           {props.ownReview ? <h4>Your review</h4> : null}
-          <UserAvatar size="60" public={publicReview} image={authContext.user.picture} />{publicReview ? authContext.user.display_name : "Anonymous review"} <br />
+          <UserAvatar size="45" public={publicReview} image={authContext.user.picture} />{publicReview ? authContext.user.display_name : "Anonymous review"} <br />
           <Form onSubmit={createReview}>
             <label><input type="checkbox" checked={publicReview} onChange={e => setPublicReview(e.target.checked)} /> Public review</label><br />
             Role: Generic position<br />
@@ -125,7 +125,7 @@ export default function Review(props) {
     <Card style={{ width: '400px' }} className="mb-2">
       <Card.Body>
         {props.ownReview ? <h4>Your review</h4> : null}
-        <UserAvatar size="60" public={publicReview} image={authContext.user.picture} />{publicReview ? authContext.user.display_name : "Anonymous review"} <br />
+        <UserAvatar size="45" public={publicReview} image={authContext.user.picture} />{publicReview ? authContext.user.display_name : "Anonymous review"} <br />
         <Form onSubmit={editReview}>
           <label><input type="checkbox" checked={publicReview} onChange={e => setPublicReview(e.target.checked)} /> Public review</label><br />
           Role: Generic position<br />
@@ -143,7 +143,7 @@ export default function Review(props) {
     <Card style={{ width: '400px' }} className="mb-2">
       <Card.Body>
         {props.ownReview ? <h4>Your review</h4> : null}
-        <UserAvatar size="60" public={publicReview} image={props.review.reviewer_avatar} /> {publicReview ? props.review.reviewer_display_name : "Anonymous review"} <br />
+        <UserAvatar size="45" public={publicReview} image={props.review.reviewer_avatar} /> {publicReview ? props.review.reviewer_display_name : "Anonymous review"} <br />
         <Time time={props.review.created_at} /><br />
         Role: Generic position<br />
         Salary range: <b>800 - 1000 EUR</b><br />
