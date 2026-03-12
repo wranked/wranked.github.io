@@ -61,7 +61,6 @@ export default function ListReviews(props) {
 
   return (
     <>
-      <h4>Review Summary</h4>
       <ReviewSummary company={companyData} />
       <MyCompanyReview updateParent={updateCompany} />
       <h4>Reviews</h4>

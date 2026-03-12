@@ -1,15 +1,12 @@
 import React from 'react'
 import StarRatingIcon from 'shared/icons/StarRatingIcon'
 import Card from 'react-bootstrap/Card'
+import Rating from 'shared/ui/Rating'
+import './ReviewSummary.css'
 
 import { Link } from 'react-router-dom'
 import { useState } from "react"
-import { Accordion, ListGroup, OverlayTrigger, Tooltip } from "react-bootstrap"
-
-const styles = {
-  width: "300px",
-  height: "1rem",
-}
+import { Stack, Accordion, ListGroup, OverlayTrigger, Tooltip } from "react-bootstrap"
 
 
 export default function ReviewSummary(props) {
@@ -23,10 +20,10 @@ export default function ReviewSummary(props) {
   const [hoveredItem, setHoveredItem] = useState(null)
 
   return (
-    <Card style={{ width: '400px' }} className="mb-2">
+    <Card className="mb-2 review-summary-card">
       <Card.Body>
-        <Card.Title><Link style={{ textDecoration: "none" }} to={`/company/${props.company.id}`}>{props.company.display_name}</Link></Card.Title>
-        {props.company.branches.length > 1 ? (
+        <Card.Title>Review Summary</Card.Title>
+        {/* {props.company.branches.length > 1 ? (
           <Accordion>
             <Accordion.Item eventKey="0">
               <Accordion.Header>Locations</Accordion.Header>
@@ -48,16 +45,29 @@ export default function ReviewSummary(props) {
           </Accordion>
         ) : props.company.branches.length === 1 ? (
           <Card.Text>{props.company.branches[0].location}</Card.Text>
-        ) : null}
+        ) : null} */}
 
-        {
-          auxArray.map((index) => (
-            <Card.Text key={index} style={{ marginBottom: "4px", lineHeight: "1.2" }}>{index + 1} <progress style={styles} max={maxRating} value={summary[index + 1] || 0} /></Card.Text>
-          ))
-        }
-        <Card.Title>{Number(media).toFixed(1)}</Card.Title>
-        <StarRatingIcon editMode={false} value={media} stars={stars} />
-        <Card.Text>{`${count} ${count === 1 ? 'review' : 'reviews'}`}</Card.Text>
+        <div className="review-summary-content">
+          <div className="review-summary-progress-column">
+            {
+              auxArray.map((index) => (
+                <Card.Text key={index} className="review-summary-progress-row">{index + 1} <progress className="review-summary-progress" max={maxRating} value={summary[index + 1] || 0} /></Card.Text>
+              ))
+            }
+          </div>
+
+          <div className="review-summary-rating-column">
+            <Stack direction="row" gap={3} className="review-summary-rating-row">
+              <Rating value={media} />
+              <Stack direction="vertical" gap={1} className="review-summary-rating-details">
+                <Stack direction="horizontal">
+                  <StarRatingIcon editMode={false} value={media} stars={stars} />
+                </Stack>
+                <Card.Text>{`${count} ${count === 1 ? 'review' : 'reviews'}`}</Card.Text>
+              </Stack>
+            </Stack>
+          </div>
+        </div>
       </Card.Body>
     </Card>
   )
