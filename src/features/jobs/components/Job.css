@@ -1,0 +1,28 @@
+.job-card {
+  width: 100%;
+  max-width: 600px;
+}
+
+.job-company-avatar-col {
+  margin-bottom: 0.75rem;
+}
+
+.job-title-link {
+  text-decoration: none;
+}
+
+.job-title {
+  margin-bottom: 0.25rem;
+  color: inherit;
+  line-height: 1.2;
+}
+
+.job-meta {
+  margin-bottom: 0.25rem;
+}
+
+@media (min-width: 768px) {
+  .job-company-avatar-col {
+    margin-bottom: 0;
+  }
+}

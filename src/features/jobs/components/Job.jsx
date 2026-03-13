@@ -7,21 +7,22 @@ import Time from 'shared/ui/Time'
 import { CompanyAvatar } from 'features/companies'
 
 import { Link } from 'react-router-dom'
+import './Job.css'
 
 
 export default function Job(props) {
   return (
-    <Card style={{ width: '500px' }} className="mb-2">
+    <Card className="job-card mb-2">
       <Card.Body>
-        <Row>
-          <Col md="auto">
+        <Row className="align-items-start">
+          <Col md="auto" className="job-company-avatar-col">
             <CompanyAvatar size="60" image={props.job.company_avatar_url} />
           </Col>
           <Col>
-            <Link to={`/job/${props.job.id}`}><h4>{props.job.title}</h4></Link>
-            <Card.Text>{props.job.company_name}</Card.Text>
-            <Card.Text>{props.job.location}</Card.Text>
-            <Card.Text><Time time={props.job.created_at} /></Card.Text>
+            <Link className="job-title-link" to={`/job/${props.job.id}`}><h4 className="job-title">{props.job.title}</h4></Link>
+            <Card.Text className="job-meta">{props.job.company_name}</Card.Text>
+            <Card.Text className="job-meta">{props.job.location}</Card.Text>
+            <Card.Text className="job-meta"><Time time={props.job.created_at} /></Card.Text>
           </Col>
         </Row>
       </Card.Body>
