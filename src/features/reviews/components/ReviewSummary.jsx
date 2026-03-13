@@ -3,6 +3,7 @@ import StarRatingIcon from 'shared/icons/StarRatingIcon'
 import Card from 'react-bootstrap/Card'
 import Rating from 'shared/ui/Rating'
 import './ReviewSummary.css'
+import ReviewCounter from 'shared/ui/ReviewCounter'
 
 import { Link } from 'react-router-dom'
 import { useState } from "react"
@@ -20,7 +21,7 @@ export default function ReviewSummary(props) {
   const [hoveredItem, setHoveredItem] = useState(null)
 
   return (
-    <Card className="mb-2 review-summary-card">
+    <Card className="review-summary-card">
       <Card.Body>
         <Card.Title>Review Summary</Card.Title>
         {/* {props.company.branches.length > 1 ? (
@@ -57,15 +58,15 @@ export default function ReviewSummary(props) {
           </div>
 
           <div className="review-summary-rating-column">
-            <Stack direction="row" gap={3} className="review-summary-rating-row">
+            <div className="review-summary-rating-row">
               <Rating value={media} />
-              <Stack direction="vertical" gap={1} className="review-summary-rating-details">
-                <Stack direction="horizontal">
+              <div className="review-summary-rating-details">
+                <div>
                   <StarRatingIcon editMode={false} value={media} stars={stars} />
-                </Stack>
-                <Card.Text>{`${count} ${count === 1 ? 'review' : 'reviews'}`}</Card.Text>
-              </Stack>
-            </Stack>
+                </div>
+                <ReviewCounter value={count} />
+              </div>
+            </div>
           </div>
         </div>
       </Card.Body>

@@ -51,7 +51,7 @@ export default function CompanyAbout() {
 
   return (
     <div>
-      <Card style={{ width: "800px" }}>
+      <Card>
         <Card.Body>
           <Card.Title>Overview</Card.Title>
           <Card.Text style={{ whiteSpace: "pre-line" }}>{companyData.description}</Card.Text>
