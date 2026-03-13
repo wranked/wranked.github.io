@@ -21,7 +21,7 @@ export default function ReviewSummary(props) {
   const [hoveredItem, setHoveredItem] = useState(null)
 
   return (
-    <Card className="review-summary-card">
+    <Card className="review-summary-card mb-2">
       <Card.Body>
         <Card.Title>Review Summary</Card.Title>
         {/* {props.company.branches.length > 1 ? (

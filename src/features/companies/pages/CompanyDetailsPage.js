@@ -50,7 +50,7 @@ export default function CompanyDetailsPage() {
         <LoadingSpinner />
         :
         <>
-          <Card>
+          <Card className="mb-2">
             <Card.Body>
               <CompanyAvatar size="60" image={companyData.avatar_url} />
               <h3>{companyData.display_name} {companyData.blacklisted_at !== null ? <FaExclamationTriangle title={`Blacklisted Company ${companyData.blacklisted_at}`} style={{ color: "#FF0000" }} /> : null}</h3>
