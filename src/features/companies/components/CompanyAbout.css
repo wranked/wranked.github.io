@@ -1,0 +1,17 @@
+.company-about-card {
+  border: 1px solid #dee2e6;
+}
+
+.company-about-card-body {
+  padding: 1rem;
+}
+
+@media (max-width: 575.98px) {
+  .company-about-card {
+    border: 0px;
+  }
+
+  .company-about-card-body {
+    padding: 0px;
+  }
+}
