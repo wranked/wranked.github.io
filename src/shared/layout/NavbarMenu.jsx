@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 
 import { GenerateMenu } from 'menuItemsData'
@@ -22,15 +22,53 @@ export default function NavbarMenu() {
   const authContext = useAuth()
   const menuItemsData = Object.values(GenerateMenu(authContext.user, authContext.companies))
   const { origin, destination } = useLocation()
+  const [expanded, setExpanded] = useState(false)
+  const navbarRef = useRef(null)
 
   // TODO: Check if necessary to get User all the time
   // useEffect(function () {
   //   authContext.checkUser()
   // }, [])
 
+  useEffect(() => {
+    if (!expanded) {
+      return
+    }
+
+    function closeOnOutsideClick(event) {
+      if (navbarRef.current && !navbarRef.current.contains(event.target)) {
+        setExpanded(false)
+      }
+    }
+
+    function closeOnEscape(event) {
+      if (event.key === 'Escape') {
+        setExpanded(false)
+      }
+    }
+
+    document.addEventListener('mousedown', closeOnOutsideClick)
+    document.addEventListener('touchstart', closeOnOutsideClick)
+    document.addEventListener('keydown', closeOnEscape)
+
+    return () => {
+      document.removeEventListener('mousedown', closeOnOutsideClick)
+      document.removeEventListener('touchstart', closeOnOutsideClick)
+      document.removeEventListener('keydown', closeOnEscape)
+    }
+  }, [expanded])
+
 
   return (
-    <Navbar expand="md" bg="light" data-bs-theme="light" sticky="top">
+    <Navbar
+      ref={navbarRef}
+      expand="md"
+      bg="light"
+      data-bs-theme="light"
+      sticky="top"
+      expanded={expanded}
+      onToggle={(nextExpanded) => setExpanded(nextExpanded)}
+    >
       <Container>
         <Navbar.Brand href="#home">
           <Link to="/" className="logo">

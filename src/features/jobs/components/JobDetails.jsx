@@ -14,9 +14,9 @@ export default function JobDetails(props) {
   return (
     <Card>
       <Card.Body>
-        <CompanyAvatar size="60" image={props.job.company_avatar_url} />
-        <Link to={`/company/${props.job.company}/jobs`}>{props.job.company_name}
-        </Link> {props.job.has_sponsorship ? <MdVerified title="Certified Agency" style={{ color: "#1DA1F2" }} /> : null}
+        <Card.Title><CompanyAvatar size="60" image={props.job.company_avatar_url} />
+        <Link style={{ textDecoration: 'none' }} to={`/company/${props.job.company}/jobs`}>{props.job.company_name}
+        </Link> {props.job.has_sponsorship ? <MdVerified title="Certified Agency" style={{ color: "#1DA1F2" }} /> : null}</Card.Title>
         <h4>{props.job.title}</h4>
         {props.job.location} - <Time time={props.job.created_at} /><br />
         <Stack direction="horizontal" gap={1}>
@@ -34,6 +34,7 @@ export default function JobDetails(props) {
         <Stack direction="vertical" gap={1}>
           <span>Work permit: {props.job.has_sponsorship ? <FaCheckCircle style={{ color: "green" }} /> : <FaTimesCircle style={{ color: "red" }} />}</span>
           <span>Accommodation: {props.job.has_accommodation ? <FaCheckCircle style={{ color: "green" }} /> : <FaTimesCircle style={{ color: "red" }} />}</span>
+          <span>Relocation: {props.job.has_relocation ? <FaCheckCircle style={{ color: "green" }} /> : <FaTimesCircle style={{ color: "red" }} />}</span>
           <span>Food: {props.job.has_meal ? <FaCheckCircle style={{ color: "green" }} /> : <FaTimesCircle style={{ color: "red" }} />}</span>
         </Stack>
 
