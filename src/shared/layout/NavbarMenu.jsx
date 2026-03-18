@@ -91,7 +91,7 @@ export default function NavbarMenu() {
 function MenuItems({ items }) {
   return (
     items.submenu ?
-      <NavDropdown title={items.title} id="basic-nav-dropdown">
+      <NavDropdown title={items.title} id="basic-nav-dropdown" align="end">
         {items.submenu.map((submenu, index) => {
           return (
             submenu.title === "divider" ?
