@@ -12,7 +12,7 @@ import CertifiedIcon from 'shared/icons/CertifiedIcon'
 
 import Card from 'react-bootstrap/Card'
 import Nav from 'react-bootstrap/Nav'
-
+import './CompanyDetailsPage.css'
 
 
 export default function CompanyDetailsPage() {
@@ -50,8 +50,8 @@ export default function CompanyDetailsPage() {
         <LoadingSpinner />
         :
         <>
-          <Card className="mb-2">
-            <Card.Body>
+          <Card className="company-details-page mb-2">
+            <Card.Body className="company-details-page-body">
               <CompanyAvatar size="60" image={companyData.avatar_url} />
               <h3>{companyData.display_name} {companyData.blacklisted_at !== null ? <FaExclamationTriangle title={`Blacklisted Company ${companyData.blacklisted_at}`} style={{ color: "#FF0000" }} /> : null}</h3>
               <p>{companyData.category} <CertifiedIcon isCertified={companyData.is_certified} /> - {companyData.primary_location}</p>

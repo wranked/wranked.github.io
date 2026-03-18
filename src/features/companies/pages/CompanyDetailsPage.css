@@ -1,0 +1,19 @@
+.company-details-page {
+  border: 1px solid #dee2e6;
+}
+
+.company-details-page-body {
+  padding: 1rem;
+}
+
+@media (max-width: 768px) {
+  .company-details-page {
+    /* border: 0px; */
+    border-radius: 0;
+  }
+
+  .company-details-page-body {
+    /* padding: 0px; */
+    /* border-radius: 0; */
+  }
+}
