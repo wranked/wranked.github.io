@@ -57,15 +57,7 @@ export default function CompanyListPage() {
   return (
     <AppContent>
       <h1>Companies {destination ? "in " + destination : "around the world"}</h1>
-      <p>How to calculate the Companies Ranking:</p>
-      <ul >
-        <li>Only one review/rating per company and user is allowed</li>
-        <li>The companies need at least 3 ratings to be listed in the ranking</li>
-        <li>The ratings are valid for 18 months, reviews will always be visible</li>
-        <li>Ratings from unverified mobile phone users are not taken into account</li>
-        <li>Ratings from company admin users are not taken into account</li>
-        <li>Ratings from public reviews are worth more than anonymous ones</li>
-      </ul>
+      
       <p>References:</p>
 
       <p><CertifiedIcon /> Intermediary (agency) who issued an employment permit.</p>
