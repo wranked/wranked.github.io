@@ -1,5 +1,5 @@
-export { default as JobsPage } from './pages/JobsPage'
-export { default as JobPage } from './pages/JobPage'
+export { default as JobListPage } from './pages/JobListPage'
+export { default as JobDetailsPage } from './pages/JobDetailsPage'
 export { default as JobListing } from './components/JobListing'
 export { default as JobDetails } from './components/JobDetails'
 export { default as ListCompanyJobs } from './components/ListCompanyJobs'

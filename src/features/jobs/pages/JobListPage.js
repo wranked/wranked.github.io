@@ -15,11 +15,9 @@ import Navbar from 'react-bootstrap/Navbar'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import InputGroup from 'react-bootstrap/InputGroup'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
 
 
-export default function JobsPage() {
+export default function JobListPage() {
 
   const { destination } = useLocation()
   const client = useApiClient()
@@ -51,34 +49,30 @@ export default function JobsPage() {
     <AppContent>
       <h1>JobsPage</h1>
       <Navbar className="justify-content-between">
-        <Form onSubmit={e => { e.preventDefault(); fetchJobs(e) }}>
-          <Row>
-            <Col xs="auto">
-              <InputGroup>
-                <InputGroup.Text id="basic-addon1"><FaSearch /></InputGroup.Text>
-                <Form.Control
-                  type="text"
-                  placeholder="Keywords"
-                  value={filters.search}
-                  onChange={(e) => setFilters({ ...filters, search: e.target.value })}
-                />
-              </InputGroup>
-            </Col>
-            <Col xs="auto">
-              <InputGroup>
-                <InputGroup.Text id="basic-addon2"><FaLocationDot /></InputGroup.Text>
-                <Form.Control
-                  type="text"
-                  placeholder="Location"
-                  value={filters.location}
-                  onChange={(e) => setFilters({ ...filters, location: e.target.value })}
-                />
-              </InputGroup>
-            </Col>
-            <Col xs="auto">
-              <Button variant="primary" type="submit">Search</Button>
-            </Col>
-          </Row>
+        <Form className="w-100" onSubmit={e => { e.preventDefault(); fetchJobs(e) }}>
+          <div className="d-flex flex-wrap gap-2 w-100">
+            <InputGroup className="flex-grow-1" style={{ minWidth: '220px' }}>
+              <InputGroup.Text id="basic-addon1"><FaSearch /></InputGroup.Text>
+              <Form.Control
+                type="text"
+                placeholder="Keywords"
+                value={filters.search || ""}
+                onChange={(e) => setFilters({ ...filters, search: e.target.value })}
+              />
+            </InputGroup>
+
+            <InputGroup className="flex-grow-1" style={{ minWidth: '220px' }}>
+              <InputGroup.Text id="basic-addon2"><FaLocationDot /></InputGroup.Text>
+              <Form.Control
+                type="text"
+                placeholder="Location"
+                value={filters.location || ""}
+                onChange={(e) => setFilters({ ...filters, location: e.target.value })}
+              />
+            </InputGroup>
+
+            <Button variant="primary" type="submit">Search</Button>
+          </div>
         </Form>
       </Navbar>
       <div style={{ minHeight: "1000px" }}>

@@ -21,9 +21,9 @@
   margin-top: 0.4rem;
 }
 
-@media (max-width: 576px) {
+/* @media (max-width: 768px) {
   .location-map {
     width: 100%;
     max-width: 100%;
   }
-}
+} */

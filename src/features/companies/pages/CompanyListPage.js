@@ -16,8 +16,6 @@ import Navbar from 'react-bootstrap/Navbar'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import InputGroup from 'react-bootstrap/InputGroup'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
 import BlacklistedIcon from 'shared/icons/BlacklistedIcon'
 
 
@@ -75,42 +73,32 @@ export default function CompanyListPage() {
 
 
       <Navbar className="justify-content-between">
-        <Form onSubmit={e => { e.preventDefault(); fetchCompanies() }}>
-          <Row>
-            <Col xs="auto">
-              <InputGroup>
-                <InputGroup.Text id="basic-addon1"><FaSearch /></InputGroup.Text>
-                <Form.Control
-                  type="text"
-                  placeholder="Company"
-                  value={filters.search || ""}
-                  onChange={(e) => setFilters({ ...filters, search: e.target.value })}
-                />
-              </InputGroup>
-            </Col>
-            <Col xs="auto">
-              <InputGroup>
-                <InputGroup.Text id="basic-addon2"><FaLocationDot /></InputGroup.Text>
-                <Form.Control
-                  type="text"
-                  placeholder="Location"
-                  value={filters.location || ""}
-                  onChange={(e) => setFilters({ ...filters, location: e.target.value })}
-                />
-              </InputGroup>
-            </Col>
-            <Col xs="auto">
-              <Button variant="primary" type="submit">Search</Button>
-            </Col>
-          </Row>
-          <Row>
-            <Col xs="auto">
-              <Button variant="outline-success" type="button" onClick={() => applyOrderingFilter('-reviews_rating')}><FaTrophy color='#F80' /> Top companies</Button>
-            </Col>
-            <Col xs="auto">
-              <Button variant="outline-danger" type="button" onClick={() => applyOrderingFilter('reviews_rating')}><LuSkull color='#000' /> Blacklist</Button>
-            </Col>
-          </Row>
+        <Form className="w-100" onSubmit={e => { e.preventDefault(); fetchCompanies() }}>
+          <div className="d-flex flex-wrap gap-2 w-100">
+            <InputGroup className="flex-grow-1" style={{ minWidth: '220px' }}>
+              <InputGroup.Text id="basic-addon1"><FaSearch /></InputGroup.Text>
+              <Form.Control
+                type="text"
+                placeholder="Company"
+                value={filters.search || ""}
+                onChange={(e) => setFilters({ ...filters, search: e.target.value })}
+              />
+            </InputGroup>
+
+            <InputGroup className="flex-grow-1" style={{ minWidth: '220px' }}>
+              <InputGroup.Text id="basic-addon2"><FaLocationDot /></InputGroup.Text>
+              <Form.Control
+                type="text"
+                placeholder="Location"
+                value={filters.location || ""}
+                onChange={(e) => setFilters({ ...filters, location: e.target.value })}
+              />
+            </InputGroup>
+
+            {/* <Button variant="primary" type="submit">Search</Button> */}
+            <Button variant="outline-success" type="button" onClick={() => applyOrderingFilter('-reviews_rating')}><FaTrophy color='#F80' /> Top companies</Button>
+            <Button variant="outline-danger" type="button" onClick={() => applyOrderingFilter('reviews_rating')}><LuSkull color='#000' /> Blacklist</Button>
+          </div>
         </Form>
       </Navbar>
       <div style={{ minHeight: "500px" }}>

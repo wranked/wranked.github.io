@@ -6,7 +6,7 @@ import EmbassiesPage from 'pages/EmbassiesPage'
 import { LoginPage, RegisterPage, Logout } from 'features/auth'
 import SchengenPage from 'pages/SchengenPage'
 import { ListReviews, ContributionsPage } from 'features/reviews'
-import { ListCompanyJobs, JobsPage, JobPage } from 'features/jobs'
+import { ListCompanyJobs, JobListPage, JobDetailsPage } from 'features/jobs'
 import ServicesPage from 'pages/ServicesPage'
 import GuidesPage from 'pages/GuidesPage'
 // import CompanyEdit from '../pages/CompanyEdit'
@@ -18,11 +18,11 @@ export const allRoutes = [
   },
   {
     path: "/jobs",
-    element: <JobsPage />,
+    element: <JobListPage />,
   },
   {
     path: "/job/:job_id",
-    element: <JobPage />,
+    element: <JobDetailsPage />,
   },
   {
     path: "/profile",

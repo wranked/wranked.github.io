@@ -8,7 +8,7 @@ import { useApiClient } from 'context/ApiClient'
 import LoadingSpinner from 'shared/ui/LoadingSpinner'
 
 
-export default function JobPage() {
+export default function JobDetailsPage() {
 
   const { job_id } = useParams()
 
@@ -34,11 +34,11 @@ export default function JobPage() {
 
   return (
     <AppContent>
+      <h1>Job Details</h1>
       {loading ?
         <LoadingSpinner />
         :
-      <><h1>Job Details</h1>
-      <JobDetails job={data} /></>
+      <JobDetails job={data} />
       }
     </AppContent>
   )
