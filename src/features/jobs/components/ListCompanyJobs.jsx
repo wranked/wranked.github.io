@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 
 import { useApiClient } from 'context/ApiClient'
-import Job from 'features/jobs/components/Job'
+import JobListing from 'features/jobs/components/JobListing'
 import LoadingSpinner from 'shared/ui/LoadingSpinner'
 
 
@@ -33,7 +33,7 @@ export default function ListCompanyJobs() {
 
   if (loading) return <div style={{ minHeight: "1000px" }}><LoadingSpinner /></div>
 
-  const arr = data.map((job, index) => <Job key={job.id} job={job} />)
+  const arr = data.map((job, index) => <JobListing key={job.id} job={job} />)
 
   if (arr.length > 0) return arr
 

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 
 import LoadingSpinner from 'shared/ui/LoadingSpinner'
-import Review from 'features/reviews/components/Review'
+import ReviewListing from 'features/reviews/components/ReviewListing'
 import { useCompanyData } from 'features/companies'
 import { useApiClient } from 'context/ApiClient'
 import { useParams } from 'react-router-dom'
@@ -69,7 +69,7 @@ export default function ListReviews(props) {
           <p>There are no more reviews for now.</p>
           :
           data.map((review, index) =>
-            <Review key={review.id} review={review} />
+            <ReviewListing key={review.id} review={review} />
           )
       }
     </>

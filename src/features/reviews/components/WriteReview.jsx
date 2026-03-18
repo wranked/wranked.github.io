@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { FaPencilAlt } from 'react-icons/fa'
-import Review from 'features/reviews/components/Review'
+import ReviewListing from 'features/reviews/components/ReviewListing'
 
 import { Button } from 'react-bootstrap'
 
@@ -16,7 +16,7 @@ export default function WriteReview(props) {
   return (
     toggle
       ?
-      <Review mode="create" cancel={setToggle} setMode={updateMode} />
+      <ReviewListing mode="create" cancel={setToggle} setMode={updateMode} />
       :
       <Button onClick={() => setToggle(!toggle)}> <FaPencilAlt /> Write a review </Button>
   )

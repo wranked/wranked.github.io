@@ -9,7 +9,7 @@ import { FaLocationDot } from "react-icons/fa6"
 import { FaSearch } from "react-icons/fa"
 
 import AppContent from 'shared/layout/AppContent'
-import Job from 'features/jobs/components/Job'
+import JobListing from 'features/jobs/components/JobListing'
 
 import Navbar from 'react-bootstrap/Navbar'
 import Form from 'react-bootstrap/Form'
@@ -88,7 +88,7 @@ export default function JobsPage() {
         <>
           {
             data.map((job, index) =>
-              <Job key={job.id} job={job} />
+              <JobListing key={job.id} job={job} />
             )
           }
         </>

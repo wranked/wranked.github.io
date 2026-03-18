@@ -2,6 +2,7 @@ import React from 'react'
 import StarRatingIcon from 'shared/icons/StarRatingIcon'
 import Card from 'react-bootstrap/Card'
 import Rating from 'shared/ui/Rating'
+import 'styles/listingCards.css'
 import './ReviewSummary.css'
 import ReviewCounter from 'shared/ui/ReviewCounter'
 
@@ -21,7 +22,7 @@ export default function ReviewSummary(props) {
   const [hoveredItem, setHoveredItem] = useState(null)
 
   return (
-    <Card className="review-summary-card mb-2">
+    <Card className="listing-card">
       <Card.Body>
         <Card.Title>Review Summary</Card.Title>
         {/* {props.company.branches.length > 1 ? (

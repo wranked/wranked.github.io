@@ -7,12 +7,13 @@ import Time from 'shared/ui/Time'
 import { CompanyAvatar } from 'features/companies'
 
 import { Link } from 'react-router-dom'
-import './Job.css'
+import 'styles/listingCards.css'
+import './JobListing.css'
 
 
-export default function Job(props) {
+export default function JobListing(props) {
   return (
-    <Card className="job-card mb-2">
+    <Card className="listing-card job-card">
       <Card.Body>
         <Row className="align-items-start">
           <Col md="auto" className="job-company-avatar-col">

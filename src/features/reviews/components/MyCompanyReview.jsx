@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
-import Review from 'features/reviews/components/Review'
+import ReviewListing from 'features/reviews/components/ReviewListing'
 import WriteReview from 'features/reviews/components/WriteReview'
 import { useApiClient } from 'context/ApiClient'
 import { useParams } from 'react-router-dom'
@@ -45,5 +45,5 @@ export default function MyCompanyReview(props) {
 
   if (loading) return <LoadingSpinner />
 
-  return (<Review mode={mode} ownReview={true} review={data} setMode={setMode} publicReview={data.is_public} updateParent={props.updateParent} />)
+  return (<ReviewListing mode={mode} ownReview={true} review={data} setMode={setMode} publicReview={data.is_public} updateParent={props.updateParent} />)
 }

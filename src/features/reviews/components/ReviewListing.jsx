@@ -12,9 +12,10 @@ import { useApiClient } from 'context/ApiClient'
 import { useParams } from "react-router-dom"
 import { useAuth } from 'features/auth'
 import { Navigate } from 'react-router-dom'
-import './Review.css'
+import 'styles/listingCards.css'
 
-export default function Review(props) {
+
+export default function ReviewListing(props) {
 
   const { company_id } = useParams()
 
@@ -104,7 +105,7 @@ export default function Review(props) {
 
   if (props.mode === "create") return (
     authContext.user ?
-      <Card className="review-card mb-2">
+      <Card className="listing-card">
         <Card.Body>
           {props.ownReview ? <h4>Your review</h4> : null}
           <UserAvatar size="45" public={publicReview} image={authContext.user.picture} />{publicReview ? authContext.user.display_name : "Anonymous review"} <br />
@@ -123,7 +124,7 @@ export default function Review(props) {
   )
 
   if (props.mode === "edit") return (
-    <Card className="review-card mb-2">
+    <Card className="listing-card">
       <Card.Body>
         {props.ownReview ? <h4>Your review</h4> : null}
         <UserAvatar size="45" public={publicReview} image={authContext.user.picture} />{publicReview ? authContext.user.display_name : "Anonymous review"} <br />
@@ -141,7 +142,7 @@ export default function Review(props) {
   )
 
   return (
-    <Card className="review-card mb-2">
+    <Card className="listing-card">
       <Card.Body>
         {props.ownReview ? <h4>Your review</h4> : null}
         <UserAvatar size="45" public={publicReview} image={props.review.reviewer_avatar} /> {publicReview ? props.review.reviewer_display_name : "Anonymous review"} <br />

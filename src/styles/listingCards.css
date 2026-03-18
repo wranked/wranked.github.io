@@ -1,0 +1,13 @@
+.listing-card {
+  width: 100%;
+  max-width: 768px;
+  margin:  0px 0px 8px 0px;
+  /* margin-bottom: 5px; */
+}
+
+@media (max-width: 768px) {
+  .listing-card {
+    border-radius: 0;
+    margin-bottom: 0px;
+  }
+}
