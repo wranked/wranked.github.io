@@ -19,7 +19,7 @@ export default function ReviewListing(props) {
 
   const { company_id } = useParams()
 
-  const [publicReview, setPublicReview] = useState(props.review ? props.review.is_public : false)
+  const [publicReview, setPublicReview] = useState(props.review ? props.review.reviewer_email != null : false)
   const [rating, setRating] = useState(props.review ? props.review.rating : 0)
   const [comment, setComment] = useState(props.review ? props.review.comment : "")
   const [role, setRole] = useState("other")

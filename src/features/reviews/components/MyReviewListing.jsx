@@ -17,7 +17,7 @@ export default function MyReviewListing(props) {
   const [publicReview, setPublicReview] = useState(props.review ? props.review.is_public : false)
   const [rating, setRating] = useState(props.review ? props.review.rating : 0)
   const [comment, setComment] = useState(props.review ? props.review.comment : "")
-  const [role, setRole] = useState("other")
+  const [role, setRole] = useState("")
   const [salaryRange, setSalaryRange] = useState("1000-1200")
   const [salaryCurrency, setSalaryCurrency] = useState("EUR")
   const [salaryFrequency, setSalaryFrequency] = useState("monthly")
@@ -97,9 +97,7 @@ export default function MyReviewListing(props) {
     setMode("edit")
   }
 
-
   if (mode === "create") return (
-    <>{console.log("create mode")}
     <Card className="listing-card">
       <Card.Body>
         <Form onSubmit={createReview}>
@@ -120,11 +118,9 @@ export default function MyReviewListing(props) {
         </Form>
       </Card.Body>
     </Card>
-  </>
   )
 
   if (mode === "edit") return (
-    <>{console.log("edit mode")}
     <Card className="listing-card">
       <Card.Body>
         <Form onSubmit={editReview}>
@@ -142,11 +138,9 @@ export default function MyReviewListing(props) {
         </Form>
       </Card.Body>
     </Card>
-  </>
   )
 
   return (
-      <>{console.log("view mode")}
     <Card className="listing-card">
       <Card.Body>
         Generic position at <Link styles={{ textDecoration: 'none' }} to={`/company/${props.review.company.id}`}>{props.review.company.display_name}</Link><br />
@@ -157,7 +151,6 @@ export default function MyReviewListing(props) {
         <Button onClick={editMode}>Edit</Button>
       </Card.Body>
     </Card>
-    </>
   )
 
 }
