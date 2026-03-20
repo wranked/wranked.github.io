@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect, useRef } from "react"
 
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
@@ -7,6 +7,7 @@ import FloatingLabel from 'react-bootstrap/FloatingLabel'
 
 import Comment from "features/reviews/components/Comment"
 import StarRatingIcon from 'shared/icons/StarRatingIcon'
+import CompanyAvatar from 'features/companies/components/CompanyAvatar'
 import Time from 'shared/ui/Time'
 import { useApiClient } from 'context/ApiClient'
 import { useAuth } from 'features/auth'
@@ -23,15 +24,56 @@ export default function MyReviewListing(props) {
   const [salaryFrequency, setSalaryFrequency] = useState("monthly")
   const [error, setError] = useState()
   const [mode, setMode] = useState(props.mode || "view")
-  const [company, setCompany] = useState("")
+  const [companySearch, setCompanySearch] = useState("")
+  const [companyId, setCompanyId] = useState("")
+  const [companySuggestions, setCompanySuggestions] = useState([])
+  const [showDropdown, setShowDropdown] = useState(false)
+  const companySearchRef = useRef(null)
+  const searchTimeoutRef = useRef(null)
 
   const client = useApiClient()
   const authContext = useAuth()
 
+  useEffect(function () {
+    if (companySearch.length >= 3) {
+      clearTimeout(searchTimeoutRef.current)
+      searchTimeoutRef.current = setTimeout(function () {
+        client.get(`/companies/?search=${encodeURIComponent(companySearch)}`)
+          .then(function (res) {
+            setCompanySuggestions(res.data.results)
+            setShowDropdown(true)
+          })
+          .catch(function () {
+            setCompanySuggestions([])
+          })
+      }, 300)
+    } else {
+      clearTimeout(searchTimeoutRef.current)
+      setCompanySuggestions([])
+      setShowDropdown(false)
+      if (!companyId) setCompanyId("")
+    }
+    return function () { clearTimeout(searchTimeoutRef.current) }
+  }, [companySearch])
+
+  useEffect(function () {
+    function handleClickOutside(e) {
+      if (companySearchRef.current && !companySearchRef.current.contains(e.target)) {
+        setShowDropdown(false)
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside)
+    return function () { document.removeEventListener("mousedown", handleClickOutside) }
+  }, [])
+
   function createReview(event) {
     event.preventDefault()
+    if (!companyId) {
+      setError(new Error("Please select a company from the suggestions."))
+      return
+    }
     client
-      .post(`/companies/${company}/reviews/`,
+      .post(`/companies/${companyId}/reviews/`,
         {
           "is_public": publicReview,
           "rating": rating,
@@ -101,15 +143,49 @@ export default function MyReviewListing(props) {
     <Card className="listing-card">
       <Card.Body>
         <Form onSubmit={createReview}>
-          <label><input type="checkbox" checked={publicReview} onChange={e => setPublicReview(e.target.checked)} /> Public review</label><br />
-          <FloatingLabel controlId="floatingInput" label="Company" className="mb-2">
-            <Form.Control type="text" placeholder="Company" value={company} onChange={e => setCompany(e.target.value)} required /><br />
-          </FloatingLabel>
+          <div ref={companySearchRef} style={{ position: 'relative' }} className="mb-2">
+            <FloatingLabel controlId="floatingCompany" label="Company">
+              <Form.Control
+                type="text"
+                placeholder="Company"
+                value={companySearch}
+                onChange={e => { setCompanySearch(e.target.value); setCompanyId("") }}
+                autoComplete="off"
+                required
+              />
+            </FloatingLabel>
+            {showDropdown && companySuggestions.length > 0 && (
+              <div style={{ position: 'absolute', top: '100%', left: 0, right: 0, zIndex: 1000, background: '#fff', border: '1px solid #dee2e6', borderRadius: '4px', maxHeight: '200px', overflowY: 'auto', boxShadow: '0 4px 8px rgba(0,0,0,0.1)' }}>
+                {companySuggestions.map(function (c) {
+                  return (
+                    <div
+                      key={c.id}
+                      style={{ padding: '8px 12px', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '8px' }}
+                      onMouseEnter={e => e.currentTarget.style.background = '#f8f9fa'}
+                      onMouseLeave={e => e.currentTarget.style.background = '#fff'}
+                      onMouseDown={function () { setCompanySearch(c.display_name); setCompanyId(c.id); setShowDropdown(false) }}
+                    >
+                      <CompanyAvatar size="30" image={c.avatar_url} />
+                      {c.display_name}
+                    </div>
+                  )
+                })}
+              </div>
+            )}
+            {showDropdown && companySuggestions.length === 0 && companySearch.length >= 3 && (
+              <div style={{ position: 'absolute', top: '100%', left: 0, right: 0, zIndex: 1000, background: '#fff', border: '1px solid #dee2e6', borderRadius: '4px', padding: '8px 12px', color: '#6c757d', boxShadow: '0 4px 8px rgba(0,0,0,0.1)' }}>
+                <Link style={{ textDecoration: 'none' }} to="/companies/new">No companies found. Add it!</Link>
+              </div>
+            )}
+          </div>
           <FloatingLabel controlId="floatingInput" label="Role" className="mb-2">
             <Form.Control type="text" placeholder="Role" value={role} onChange={e => setRole(e.target.value)} required /><br />
           </FloatingLabel>
+          <label><input type="checkbox" checked={publicReview} onChange={e => setPublicReview(e.target.checked)} /> Public review</label><br />
+
           <Card.Text>Salary range: <b>800 - 1000 EUR</b></Card.Text>
-          <StarRatingIcon editMode={true} value={rating} onChange={e => setRating(e.target.value)} /><br />
+
+          <label>rating<StarRatingIcon size={25} editMode={true} value={rating} onChange={e => setRating(e.target.value)} /></label><br />
 
           <Form.Control as="textarea" rows={5} name="comment" placeholder="Write your comment" value={comment} onChange={e => setComment(e.target.value)} required />
 

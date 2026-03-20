@@ -113,7 +113,7 @@ export default function ReviewListing(props) {
             <label><input type="checkbox" checked={publicReview} onChange={e => setPublicReview(e.target.checked)} /> Public review</label><br />
             Role: Generic position<br />
             Salary range: <b>800 - 1000 EUR</b><br />
-            <StarRatingIcon editMode={true} value={rating} onChange={e => setRating(e.target.value)} /><br />
+            <StarRatingIcon editMode={true} size={25} value={rating} onChange={e => setRating(e.target.value)} /><br />
             <Form.Control as="textarea" rows={5} name="comment" onChange={e => setComment(e.target.value)} /><br />
             <Button onClick={cancelCreate}>Cancel</Button>
             <Button type="submit">Save</Button>
@@ -132,7 +132,7 @@ export default function ReviewListing(props) {
           <label><input type="checkbox" checked={publicReview} onChange={e => setPublicReview(e.target.checked)} /> Public review</label><br />
           Role: Generic position<br />
           Salary range: <b>800 - 1000 EUR</b><br />
-          <StarRatingIcon editMode={true} value={props.review.rating} onChange={e => setRating(e.target.value)} /><br />
+          <StarRatingIcon editMode={true} size={25} value={props.review.rating} onChange={e => setRating(e.target.value)} /><br />
           <Form.Control as="textarea" rows={5} name="comment" value={comment} onChange={e => setComment(e.target.value)} /><br />
           <Button onClick={cancelEdit}>Cancel</Button>
           <Button type="submit">Save</Button>
