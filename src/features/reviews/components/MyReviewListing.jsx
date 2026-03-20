@@ -88,8 +88,18 @@ export default function MyReviewListing(props) {
         },
       )
       .then(function (res) {
-        if (res.status == 201) {
-          setMode("view")
+        if (res.status === 201) {
+          // Notify parent to refetch lists that depend on mode changes.
+          if (typeof props.setMode === "function") {
+            props.setMode(`created-${Date.now()}`)
+          }
+
+          // In create mode this closes the form and remounts the listing tree.
+          if (typeof props.cancel === "function") {
+            props.cancel(false)
+          } else {
+            setMode("view")
+          }
         }
       })
       .catch(function (err) {
@@ -224,6 +234,8 @@ export default function MyReviewListing(props) {
         <Card.Text>Salary range: <b>800 - 1000 EUR</b></Card.Text>
         <StarRatingIcon editMode={false} value={props.review.rating} />
         <Comment value={props.review.comment} />
+        <Card.Text>Status: <b>{props.review.approved ? "Approved" : "Pending"}</b></Card.Text>
+        <Card.Text>Submitted: <b>{new Date(props.review.created_at).toLocaleDateString()}</b></Card.Text>
         <Button onClick={editMode}>Edit</Button>
       </Card.Body>
     </Card>
