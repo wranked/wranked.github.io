@@ -4,6 +4,7 @@ import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import FloatingLabel from 'react-bootstrap/FloatingLabel'
+import Alert from 'react-bootstrap/Alert'
 
 import Comment from "features/reviews/components/Comment"
 import StarRatingIcon from 'shared/icons/StarRatingIcon'
@@ -68,6 +69,7 @@ export default function MyReviewListing(props) {
 
   function createReview(event) {
     event.preventDefault()
+    setError(null)
     if (!companyId) {
       setError(new Error("Please select a company from the suggestions."))
       return
@@ -103,6 +105,10 @@ export default function MyReviewListing(props) {
         }
       })
       .catch(function (err) {
+        if (err?.response?.status === 409) {
+          setError(new Error("You already submitted a review for this company."))
+          return
+        }
         setError(err)
       })
   }
@@ -153,6 +159,7 @@ export default function MyReviewListing(props) {
     <Card className="listing-card">
       <Card.Body>
         <Form onSubmit={createReview}>
+          {error?.message ? <Alert variant="warning" className="mb-2">{error.message}</Alert> : null}
           <div ref={companySearchRef} style={{ position: 'relative' }} className="mb-2">
             <FloatingLabel controlId="floatingCompany" label="Company">
               <Form.Control
@@ -173,7 +180,7 @@ export default function MyReviewListing(props) {
                       style={{ padding: '8px 12px', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '8px' }}
                       onMouseEnter={e => e.currentTarget.style.background = '#f8f9fa'}
                       onMouseLeave={e => e.currentTarget.style.background = '#fff'}
-                      onMouseDown={function () { setCompanySearch(c.display_name); setCompanyId(c.id); setShowDropdown(false) }}
+                      onMouseDown={function () { setCompanySearch(c.display_name); setCompanyId(c.id); setShowDropdown(false); setError(null) }}
                     >
                       <CompanyAvatar size="30" image={c.avatar_url} />
                       {c.display_name}
