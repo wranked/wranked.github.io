@@ -1,5 +1,6 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
+import Dropdown from 'react-bootstrap/Dropdown'
 import Flag from 'shared/ui/Flag'
 
 
@@ -51,16 +52,46 @@ const languages = [
 
 export default function LanguageSelector() {
   const { t, i18n } = useTranslation("language_selector")
+  const activeLanguages = languages.filter((lng) => lng.is_active)
+  const currentLanguageCode = (i18n.resolvedLanguage || i18n.language || "en").slice(0, 2)
+  const selectedLanguage = activeLanguages.find((lng) => lng.code === currentLanguageCode) || activeLanguages[0]
+  const selectableLanguages = activeLanguages.filter((lng) => lng.code !== selectedLanguage.code)
 
   function changeLanguage(lng) {
     i18n.changeLanguage(lng)
   }
 
   return (
-    <div>
-      {languages.map((lng) => {
-        return lng.is_active ? <button key={lng.code} onClick={() => changeLanguage(lng.code)}>{lng.lang}<br />({t(lng.name)})<br /><Flag country={(lng.flag || "").toLowerCase()}/></button> : null
-      })}
-    </div>
+    <Dropdown drop="up">
+      <Dropdown.Toggle
+        variant="outline-secondary"
+        id="language-selector-toggle"
+        style={{ color: '#212529', borderColor: '#adb5bd' }}
+      >
+        <span style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+          <Flag country={(selectedLanguage.flag || "").toLowerCase()} />
+          <span>{selectedLanguage.lang}</span>
+        </span>
+      </Dropdown.Toggle>
+
+      <Dropdown.Menu
+        style={{
+          '--bs-dropdown-link-color': '#212529',
+          '--bs-dropdown-link-hover-color': '#212529',
+          '--bs-dropdown-link-hover-bg': '#e9ecef',
+          '--bs-dropdown-link-active-color': '#212529',
+          '--bs-dropdown-link-active-bg': '#dee2e6',
+        }}
+      >
+        {selectableLanguages.map((lng) => (
+          <Dropdown.Item key={lng.code} onClick={() => changeLanguage(lng.code)} style={{ color: '#212529' }}>
+            <span style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+              <Flag country={(lng.flag || "").toLowerCase()} />
+              <span>{lng.lang} ({t(lng.name)})</span>
+            </span>
+          </Dropdown.Item>
+        ))}
+      </Dropdown.Menu>
+    </Dropdown>
   )
 }
