@@ -17,12 +17,12 @@ export default function Footer() {
       <Container>
         <Row className="py-3 align-items-center">
           <Col xs="auto">
-            <span>{t("copyright", {time: new Date().getFullYear()})}</span>
+            <LanguageSelector />
           </Col>
           <Col>
           </Col>
           <Col xs="auto">
-            <LanguageSelector />
+            <span>{t("copyright", {time: new Date().getFullYear()})}</span>
           </Col>
         </Row>
       </Container>
