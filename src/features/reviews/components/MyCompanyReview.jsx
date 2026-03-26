@@ -26,15 +26,18 @@ export default function MyCompanyReview(props) {
 
   useEffect(function () {
     setLoading(true)
+    setError(null)
     client.get(`/companies/${company_id}/reviews/me/`,
       { headers: { Authorization: `Token ${authContext.token}` } }
     )
       .then(function (res) {
+        setError(null)
         setData(res.data)
         setLoading(false)
       })
       .catch(function (err) {
         setError(err)
+        setLoading(false)
       })
   }, [mode, setMode])
 

@@ -243,11 +243,10 @@ export default function ContributionListing(props) {
   return (
     <Card className="listing-card">
       <Card.Body>
-        <Card.Text>Company: <Link styles={{ textDecoration: 'none' }} to={`/company/${props.review.company.id}`}>{props.review.company.display_name}</Link></Card.Text>
+        <Card.Text><b>{position} at <Link styles={{ textDecoration: 'none' }} to={`/company/${props.review.company.id}`}>{props.review.company.display_name}</Link></b></Card.Text>
 
         <Time time={props.review.created_at} /><br />
         <Card.Text>Salary: <b>{salaryRange} {salaryCurrency} {salaryFrequency}</b></Card.Text>
-        <Card.Text>Position: <b>{position}</b></Card.Text>
         <StarRatingIcon editMode={false} value={rating} />
         <Comment value={comment} />
         <Card.Text>Status: <b>{props.review.is_approved ? "Approved" : "Pending"}</b></Card.Text>
