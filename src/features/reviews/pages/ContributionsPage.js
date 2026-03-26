@@ -4,7 +4,7 @@ import AppContent from 'shared/layout/AppContent'
 import { useApiClient } from 'context/ApiClient'
 import { useAuth } from 'features/auth'
 
-import MyReviewListing from 'features/reviews/components/MyReviewListing'
+import ContributionListing from 'features/reviews/components/ContributionListing'
 import { Navigate } from 'react-router-dom'
 import WriteReview from 'features/reviews/components/WriteReview'
 import LoadingSpinner from 'shared/ui/LoadingSpinner'
@@ -65,7 +65,7 @@ export default function ContributionsPage() {
           <h2>My reviews</h2>
           {
             data.map((review, index) =>
-              <MyReviewListing key={review.id} review={review} setMode={setMode} />
+              <ContributionListing key={review.id} review={review} setMode={setMode} />
             )
           }
         </>

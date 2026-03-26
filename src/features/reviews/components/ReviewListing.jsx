@@ -19,7 +19,7 @@ export default function ReviewListing(props) {
 
   const { company_id } = useParams()
 
-  const [publicReview, setPublicReview] = useState(props.review ? props.review.reviewer_email != null : false)
+  const [publicReview, setPublicReview] = useState(props.review.reviewer != null )
   const [rating, setRating] = useState(props.review ? props.review.rating : 0)
   const [comment, setComment] = useState(props.review ? props.review.comment : "")
   const [role, setRole] = useState("other")
@@ -145,13 +145,16 @@ export default function ReviewListing(props) {
     <Card className="listing-card">
       <Card.Body>
         {props.ownReview ? <h4>Your review</h4> : null}
-        <UserAvatar size="45" public={publicReview} image={props.review.reviewer_avatar} /> {publicReview ? props.review.reviewer_display_name : "Anonymous review"} <br />
+        <UserAvatar size="45" public={publicReview} image={publicReview ? props.review.reviewer.picture : null} /> {publicReview ? props.review.reviewer.display_name : "Anonymous review"} <br />
         <Time time={props.review.created_at} /><br />
         Role: Generic position<br />
         Salary range: <b>800 - 1000 EUR</b><br />
         <StarRatingIcon editMode={false} value={props.review.rating} /><br />
         <Card.Text>{props.review.comment}</Card.Text>
-        {props.ownReview ? <><Button onClick={editMode}>Edit</Button><Button type="button" onClick={editMode}><FaTrashAlt /></Button></> : null}
+        {props.ownReview ? <>
+        <Card.Text>Status: <b>{props.review.is_approved ? "Approved" : "Pending"}</b></Card.Text>
+        <Button onClick={editMode}>Edit</Button><Button type="button" onClick={editMode}><FaTrashAlt /></Button>
+        </> : null}
       </Card.Body>
     </Card>
   )

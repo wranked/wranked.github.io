@@ -69,7 +69,7 @@ export function GenerateMenu(user, companies=null) {
         url: '/contributions',
       },
       {
-        title: t("language"),
+        title: t("settings"),
         url: '/profile',
       },
       ...companies_admin,

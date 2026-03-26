@@ -14,15 +14,15 @@ import { useApiClient } from 'context/ApiClient'
 import { useAuth } from 'features/auth'
 import { Link } from 'react-router-dom'
 
-export default function MyReviewListing(props) {
+export default function ContributionListing(props) {
 
   const [publicReview, setPublicReview] = useState(props.review ? props.review.is_public : false)
   const [rating, setRating] = useState(props.review ? props.review.rating : 0)
   const [comment, setComment] = useState(props.review ? props.review.comment : "")
-  const [role, setRole] = useState("")
-  const [salaryRange, setSalaryRange] = useState("1000-1200")
-  const [salaryCurrency, setSalaryCurrency] = useState("EUR")
-  const [salaryFrequency, setSalaryFrequency] = useState("monthly")
+  const [position, setPosition] = useState(props.review ? props.review.position : "")
+  const [salaryRange, setSalaryRange] = useState(props.review ? props.review.salary_range : "")
+  const [salaryCurrency, setSalaryCurrency] = useState(props.review ? props.review.salary_currency : "EUR")
+  const [salaryFrequency, setSalaryFrequency] = useState(props.review ? props.review.salary_frequency : "monthly")
   const [error, setError] = useState()
   const [mode, setMode] = useState(props.mode || "view")
   const [companySearch, setCompanySearch] = useState("")
@@ -80,7 +80,7 @@ export default function MyReviewListing(props) {
           "is_public": publicReview,
           "rating": rating,
           "comment": comment,
-          "role": role,
+          "position": position,
           "salary_range": salaryRange,
           "salary_currency": salaryCurrency,
           "salary_frequency": salaryFrequency,
@@ -121,7 +121,7 @@ export default function MyReviewListing(props) {
           "is_public": publicReview,
           "rating": rating,
           "comment": comment,
-          "role": role,
+          "position": position,
           "salary_range": salaryRange,
           "salary_currency": salaryCurrency,
           "salary_frequency": salaryFrequency,
@@ -195,17 +195,21 @@ export default function MyReviewListing(props) {
               </div>
             )}
           </div>
-          <FloatingLabel controlId="floatingInput" label="Role" className="mb-2">
-            <Form.Control type="text" placeholder="Role" value={role} onChange={e => setRole(e.target.value)} required /><br />
-          </FloatingLabel>
-          <label><input type="checkbox" checked={publicReview} onChange={e => setPublicReview(e.target.checked)} /> Public review</label><br />
+        
+            <FloatingLabel controlId="floatingInput" label="Position">
+              <Form.Control type="text" placeholder="Position" value={position} onChange={e => setPosition(e.target.value)} required /><br />
+            </FloatingLabel>
+     
+            <FloatingLabel controlId="floatingInput" label="Salary EUR per month">
+              <Form.Control type="text" placeholder="Salary" value={salaryRange} onChange={e => setSalaryRange(e.target.value)} required /><br />
+            </FloatingLabel>
+         
+          <Card.Text><b>{salaryRange} {salaryCurrency} {salaryFrequency}</b></Card.Text>
 
-          <Card.Text>Salary range: <b>800 - 1000 EUR</b></Card.Text>
-
-          <label>rating<StarRatingIcon size={25} editMode={true} value={rating} onChange={e => setRating(e.target.value)} /></label><br />
+          <label>Overall rating <StarRatingIcon size={25} editMode={true} value={rating} onChange={e => setRating(e.target.value)} /></label><br />
 
           <Form.Control as="textarea" rows={5} name="comment" placeholder="Write your comment" value={comment} onChange={e => setComment(e.target.value)} required />
-
+          <label><input type="checkbox" checked={publicReview} onChange={e => setPublicReview(e.target.checked)} /> Public review</label><br />
           <Button type="button" onClick={cancelCreate}>Cancel</Button>
           <Button type="submit">Save</Button>
         </Form>
@@ -217,15 +221,18 @@ export default function MyReviewListing(props) {
     <Card className="listing-card">
       <Card.Body>
         <Form onSubmit={editReview}>
-          Generic position at <Link styles={{ textDecoration: 'none' }} to={`/company/${props.review.company.id}`}>{props.review.company.display_name}</Link><br />
-          <label><input type="checkbox" checked={publicReview} onChange={e => setPublicReview(e.target.checked)} /> Public review</label><br />
-          <Card.Text>Role: Generic position</Card.Text>
-          <Form.Control type="text" placeholder="Role" value={role} onChange={e => setRole(e.target.value)} required /><br />
-          <Card.Text>Salary range: <b>800 - 1000 EUR</b></Card.Text>
+          <Card.Title>Edit your review</Card.Title>
+          <Card.Text>Company: <Link styles={{ textDecoration: 'none' }} to={`/company/${props.review.company.id}`}>{props.review.company.display_name}</Link></Card.Text>
+          
+          <Form.Control type="text" placeholder="Position" value={position} onChange={e => setPosition(e.target.value)} required /><br />
+          <Form.Control type="text" placeholder="Salary" value={salaryRange} onChange={e => setSalaryRange(e.target.value)} required /><br />
+          <Card.Text><b>{salaryRange} {salaryCurrency} {salaryFrequency}</b></Card.Text>
+
           <StarRatingIcon editMode={true} value={props.review.rating} onChange={e => setRating(e.target.value)} /><br />
 
           <Form.Control as="textarea" rows={5} name="comment" placeholder="Write your comment" value={comment} onChange={e => setComment(e.target.value)} required />
 
+          <label><input type="checkbox" checked={publicReview} onChange={e => setPublicReview(e.target.checked)} /> Public review</label><br />
           <Button type="button" onClick={cancelEdit}>Cancel</Button>
           <Button type="submit">Save</Button>
         </Form>
@@ -236,12 +243,14 @@ export default function MyReviewListing(props) {
   return (
     <Card className="listing-card">
       <Card.Body>
-        Generic position at <Link styles={{ textDecoration: 'none' }} to={`/company/${props.review.company.id}`}>{props.review.company.display_name}</Link><br />
+        <Card.Text>Company: <Link styles={{ textDecoration: 'none' }} to={`/company/${props.review.company.id}`}>{props.review.company.display_name}</Link></Card.Text>
+
         <Time time={props.review.created_at} /><br />
-        <Card.Text>Salary range: <b>800 - 1000 EUR</b></Card.Text>
-        <StarRatingIcon editMode={false} value={props.review.rating} />
-        <Comment value={props.review.comment} />
-        <Card.Text>Status: <b>{props.review.approved ? "Approved" : "Pending"}</b></Card.Text>
+        <Card.Text>Salary: <b>{salaryRange} {salaryCurrency} {salaryFrequency}</b></Card.Text>
+        <Card.Text>Position: <b>{position}</b></Card.Text>
+        <StarRatingIcon editMode={false} value={rating} />
+        <Comment value={comment} />
+        <Card.Text>Status: <b>{props.review.is_approved ? "Approved" : "Pending"}</b></Card.Text>
         <Card.Text>Submitted: <b>{new Date(props.review.created_at).toLocaleDateString()}</b></Card.Text>
         <Button onClick={editMode}>Edit</Button>
       </Card.Body>
