@@ -2,6 +2,7 @@ import React from 'react'
 import { useCompanyData } from 'features/companies/index'
 import Card from 'react-bootstrap/Card'
 import Locations from './Locations'
+import RelatedCompanies from './RelatedCompanies'
 import './CompanyAbout.css'
 
 
@@ -27,7 +28,10 @@ export default function CompanyAbout() {
 
           <Card.Title>Industry</Card.Title>
           <Card.Text>{companyData.category}</Card.Text>
+
+          <RelatedCompanies companyData={companyData} />
           <Locations companyData={companyData} apiKey={API_KEY} />
+
         </Card.Body>
       </Card>
     </div>

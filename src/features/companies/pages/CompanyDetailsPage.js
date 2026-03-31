@@ -39,7 +39,7 @@ export default function CompanyDetailsPage() {
       .catch(function (err) {
         setError(err)
       })
-  }, [toggleRefresh])
+  }, [company_id, toggleRefresh, client])
 
 
   if (error) return <p>Error: {error.message}</p>
