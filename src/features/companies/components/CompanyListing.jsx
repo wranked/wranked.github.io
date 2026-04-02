@@ -1,7 +1,7 @@
 import React from 'react'
 import StarRatingIcon from 'shared/icons/StarRatingIcon'
 import Card from 'react-bootstrap/Card'
-import CertifiedIcon from 'shared/icons/CertifiedIcon'
+import CertifiedBadge from 'shared/icons/CertifiedBadge'
 import BlacklistedIcon from 'shared/icons/BlacklistedIcon'
 import CompanyAvatar from 'features/companies/components/CompanyAvatar'
 import Rating from 'shared/ui/Rating'
@@ -20,7 +20,7 @@ export default function CompanyListing({ company }) {
       <Card.Body>
 
         <Card.Title><Link style={{ textDecoration: 'none' }} to={`/company/${company.id}`}><CompanyAvatar size="45" image={company.avatar_url} />{company.display_name}</Link> {company.blacklisted_at !== null ? <BlacklistedIcon /> : null}</Card.Title>
-        <p>{company.category} <CertifiedIcon isCertified={company.is_certified} /></p>
+        <p>{company.category} <CertifiedBadge isCertified={company.is_certified} /></p>
         {company.branches.length > 1 ? (
           <Accordion>
             <Accordion.Item eventKey="0">
