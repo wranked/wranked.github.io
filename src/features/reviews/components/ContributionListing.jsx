@@ -3,18 +3,22 @@ import React, { useState, useEffect, useRef } from "react"
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
-import FloatingLabel from 'react-bootstrap/FloatingLabel'
 import Alert from 'react-bootstrap/Alert'
 
 import Comment from "features/reviews/components/Comment"
 import StarRatingIcon from 'shared/icons/StarRatingIcon'
 import CompanyAvatar from 'features/companies/components/CompanyAvatar'
 import Time from 'shared/ui/Time'
+import countries from 'placeholders/countries.json'
 import { useApiClient } from 'context/ApiClient'
 import { useAuth } from 'features/auth'
 import { Link } from 'react-router-dom'
 
 export default function ContributionListing(props) {
+
+  const countryOptions = Object.entries(countries).sort(function (a, b) {
+    return a[1].localeCompare(b[1])
+  })
 
   const [publicReview, setPublicReview] = useState(props.review ? props.review.is_public : false)
   const [rating, setRating] = useState(props.review ? props.review.rating : 0)
@@ -27,8 +31,15 @@ export default function ContributionListing(props) {
   const [mode, setMode] = useState(props.mode || "view")
   const [companySearch, setCompanySearch] = useState("")
   const [companyId, setCompanyId] = useState("")
+  const [selectedCompany, setSelectedCompany] = useState(null)
   const [companySuggestions, setCompanySuggestions] = useState([])
   const [showDropdown, setShowDropdown] = useState(false)
+  const [createCompanyInline, setCreateCompanyInline] = useState(false)
+  const [newCompanyData, setNewCompanyData] = useState({
+    website: "",
+    industry: "",
+    country: ""
+  })
   const companySearchRef = useRef(null)
   const searchTimeoutRef = useRef(null)
 
@@ -70,25 +81,78 @@ export default function ContributionListing(props) {
   function createReview(event) {
     event.preventDefault()
     setError(null)
-    if (!companyId) {
-      setError(new Error("Please select a company from the suggestions."))
+    const reviewPayload =
+    {
+      "is_public": publicReview,
+      "rating": rating,
+      "comment": comment,
+      "position": position,
+      "salary_range": salaryRange,
+      "salary_currency": salaryCurrency,
+      "salary_frequency": salaryFrequency,
+    }
+
+    const authHeaders = {
+      headers: { Authorization: `Token ${authContext.token}` }
+    }
+
+    function createReviewForCompany(targetCompanyId) {
+      return client.post(`/companies/${targetCompanyId}/reviews/`, reviewPayload, authHeaders)
+    }
+
+    if (createCompanyInline) {
+      const displayName = companySearch.trim()
+      if (!displayName || !newCompanyData.website.trim() || !newCompanyData.industry.trim() || !newCompanyData.country.trim()) {
+        setError(new Error("Please complete all company fields."))
+        return
+      }
+
+      client
+        .post(`/companies/`,
+        {
+          "display_name": displayName,
+          "url": newCompanyData.website.trim(),
+          "category": newCompanyData.industry.trim(),
+          "country": newCompanyData.country.trim(),
+          "legal_name": displayName,
+        },
+        authHeaders,
+        )
+        .then(function (companyRes) {
+          if (!companyRes?.data?.id) {
+            throw new Error("Company created, but response did not include an id.")
+          }
+          return createReviewForCompany(companyRes.data.id)
+        })
+        .then(function (res) {
+          if (res.status === 201) {
+            if (typeof props.setMode === "function") {
+              props.setMode(`created-${Date.now()}`)
+            }
+
+            if (typeof props.cancel === "function") {
+              props.cancel(false)
+            } else {
+              setMode("view")
+            }
+          }
+        })
+        .catch(function (err) {
+          if (err?.response?.status === 409) {
+            setError(new Error("You already submitted a review for this company."))
+            return
+          }
+          setError(err)
+        })
       return
     }
-    client
-      .post(`/companies/${companyId}/reviews/`,
-        {
-          "is_public": publicReview,
-          "rating": rating,
-          "comment": comment,
-          "position": position,
-          "salary_range": salaryRange,
-          "salary_currency": salaryCurrency,
-          "salary_frequency": salaryFrequency,
-        },
-        {
-          headers: { Authorization: `Token ${authContext.token}` }
-        },
-      )
+
+    if (!companyId) {
+      setError(new Error("Please select a company from the suggestions or add a new one."))
+      return
+    }
+
+    createReviewForCompany(companyId)
       .then(function (res) {
         if (res.status === 201) {
           // Notify parent to refetch lists that depend on mode changes.
@@ -161,48 +225,135 @@ export default function ContributionListing(props) {
         <Form onSubmit={createReview}>
           {error?.message ? <Alert variant="warning" className="mb-2">{error.message}</Alert> : null}
           <div ref={companySearchRef} style={{ position: 'relative' }} className="mb-2">
-            <FloatingLabel controlId="floatingCompany" label="Company">
+            <Form.Label>Company</Form.Label>
+            <div style={{ position: 'relative' }}>
               <Form.Control
                 type="text"
                 placeholder="Company"
                 value={companySearch}
-                onChange={e => { setCompanySearch(e.target.value); setCompanyId("") }}
+                style={{ paddingLeft: selectedCompany && companyId ? '48px' : undefined }}
+                onChange={e => {
+                  setCompanySearch(e.target.value)
+                  setCompanyId("")
+                  setSelectedCompany(null)
+                  setError(null)
+                }}
                 autoComplete="off"
                 required
               />
-            </FloatingLabel>
-            {showDropdown && companySuggestions.length > 0 && (
+              {selectedCompany && companyId ? (
+                <div
+                  style={{
+                    position: 'absolute',
+                    left: '12px',
+                    top: '50%',
+                    transform: 'translateY(-50%)',
+                    zIndex: 3,
+                    pointerEvents: 'none'
+                  }}
+                >
+                  <CompanyAvatar size="24" image={selectedCompany.avatar_url} />
+                </div>
+              ) : null}
+            </div>
+            {showDropdown && companySearch.length >= 3 && (
               <div style={{ position: 'absolute', top: '100%', left: 0, right: 0, zIndex: 1000, background: '#fff', border: '1px solid #dee2e6', borderRadius: '4px', maxHeight: '200px', overflowY: 'auto', boxShadow: '0 4px 8px rgba(0,0,0,0.1)' }}>
-                {companySuggestions.map(function (c) {
-                  return (
-                    <div
-                      key={c.id}
-                      style={{ padding: '8px 12px', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '8px' }}
-                      onMouseEnter={e => e.currentTarget.style.background = '#f8f9fa'}
-                      onMouseLeave={e => e.currentTarget.style.background = '#fff'}
-                      onMouseDown={function () { setCompanySearch(c.display_name); setCompanyId(c.id); setShowDropdown(false); setError(null) }}
+                {companySuggestions.length > 0 ? (
+                  companySuggestions.map(function (c) {
+                    return (
+                      <div
+                        key={c.id}
+                        style={{ padding: '8px 12px', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '8px' }}
+                        onMouseEnter={e => e.currentTarget.style.background = '#f8f9fa'}
+                        onMouseLeave={e => e.currentTarget.style.background = '#fff'}
+                        onMouseDown={function () {
+                          setCompanySearch(c.display_name)
+                          setCompanyId(c.id)
+                          setSelectedCompany(c)
+                          setShowDropdown(false)
+                          setCreateCompanyInline(false)
+                          setError(null)
+                        }}
+                      >
+                        <CompanyAvatar size="30" image={c.avatar_url} />
+                        {c.display_name}
+                      </div>
+                    )
+                  })
+                ) : null}
+                {!createCompanyInline ? (
+                  <div style={{ padding: '8px 12px', color: '#6c757d', borderTop: '1px solid #e9ecef' }}>
+                    Can't find the company?
+                    <Button
+                      variant="link"
+                      className="p-0 ms-1"
+                      onMouseDown={function (e) {
+                        e.preventDefault()
+                        setCreateCompanyInline(true)
+                        setShowDropdown(false)
+                        setError(null)
+                      }}
                     >
-                      <CompanyAvatar size="30" image={c.avatar_url} />
-                      {c.display_name}
-                    </div>
-                  )
-                })}
-              </div>
-            )}
-            {showDropdown && companySuggestions.length === 0 && companySearch.length >= 3 && (
-              <div style={{ position: 'absolute', top: '100%', left: 0, right: 0, zIndex: 1000, background: '#fff', border: '1px solid #dee2e6', borderRadius: '4px', padding: '8px 12px', color: '#6c757d', boxShadow: '0 4px 8px rgba(0,0,0,0.1)' }}>
-                <Link style={{ textDecoration: 'none' }} to="/companies/new">No companies found. Add it!</Link>
+                      Add it here
+                    </Button>
+                  </div>
+                ) : null}
               </div>
             )}
           </div>
+
+          {createCompanyInline ? (
+            <div
+              className="mb-3"
+              style={{
+                background: '#f3f4f6',
+                border: '1px solid #d1d5db',
+                borderRadius: '8px',
+                padding: '16px'
+              }}
+            >
+              <div style={{ fontWeight: 600, marginBottom: '12px', color: '#495057' }}>
+                New company details
+              </div>
+              <Form.Label>Website</Form.Label>
+              <Form.Control
+                type="url"
+                placeholder="https://example.com"
+                value={newCompanyData.website}
+                onChange={e => setNewCompanyData({ ...newCompanyData, website: e.target.value })}
+                required
+              />
+              <br />
+              <Form.Label>Industry</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Industry"
+                value={newCompanyData.industry}
+                onChange={e => setNewCompanyData({ ...newCompanyData, industry: e.target.value })}
+                required
+              />
+              <br />
+              <Form.Label>Country</Form.Label>
+              <Form.Select
+                value={newCompanyData.country}
+                onChange={e => setNewCompanyData({ ...newCompanyData, country: e.target.value })}
+                required
+              >
+                <option value="">Select country</option>
+                {countryOptions.map(function (country) {
+                  return (
+                    <option key={country[0]} value={country[1]}>{country[1]}</option>
+                  )
+                })}
+              </Form.Select>
+            </div>
+          ) : null}
         
-            <FloatingLabel controlId="floatingInput" label="Position">
-              <Form.Control type="text" placeholder="Position" value={position} onChange={e => setPosition(e.target.value)} required /><br />
-            </FloatingLabel>
+            <Form.Label>Position</Form.Label>
+            <Form.Control type="text" placeholder="Position" value={position} onChange={e => setPosition(e.target.value)} required /><br />
      
-            <FloatingLabel controlId="floatingInput" label="Salary EUR per month">
-              <Form.Control type="text" placeholder="Salary" value={salaryRange} onChange={e => setSalaryRange(e.target.value)} required /><br />
-            </FloatingLabel>
+            <Form.Label>Salary EUR per month</Form.Label>
+            <Form.Control type="text" placeholder="Salary" value={salaryRange} onChange={e => setSalaryRange(e.target.value)} required /><br />
          
           <Card.Text><b>{salaryRange} {salaryCurrency} {salaryFrequency}</b></Card.Text>
 
